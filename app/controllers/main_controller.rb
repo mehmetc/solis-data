@@ -63,12 +63,6 @@ class MainController < GenericController
     halt 500, api_error('500', request.url, 'SparQL error', e.message, e)
   end
 
-  get '/_logic/:ui_lijst' do
-    content_type :json
-
-    logic_ui_lijst(params[:ui_lijst]).to_json
-  end
-
   get '/schema.json' do
     content_type :json
     Graphiti::Schema.generate.to_json
