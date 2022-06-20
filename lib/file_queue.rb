@@ -2,11 +2,12 @@ require 'fileutils'
 require 'json'
 
 class FileQueue
+  attr_accessor :base_dir, :in_dir, :out_dir
   include Enumerable
 
   def initialize(name, options={})
     @name = name
-    @base_dir = options['base_dir'] || "#{Dir.pwd}/data"
+    @base_dir = options[:base_dir] || "#{Dir.pwd}/data"
 
     @in_dir = "#{@base_dir}/in/#{name}"
     @out_dir = "#{@base_dir}/out/#{name}"
