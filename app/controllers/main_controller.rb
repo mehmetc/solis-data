@@ -5,7 +5,7 @@ require_relative 'generic_controller'
 class MainController < GenericController
   get '/' do
     content_type :json
-    endpoints(Solis::ConfigFile[:services][$SERVICE_ROLE][:base_path]).to_json
+    endpoints(solis_conf[:base_path]).to_json
   rescue StandardError => e
     halt 500, api_error('500', request.url, 'Unknown Error', e.message, e)
   end
@@ -43,7 +43,7 @@ class MainController < GenericController
     halt 501, api_error('501', request.url, 'SparQL error', 'INSERT, UPDATE, DELETE not allowed') unless data.match(/clear|drop|insert|update|delete/i).nil?
     data = URI.decode_www_form(data).to_h
 
-    url = "#{Solis::ConfigFile[:solis][:sparql_endpoint]}"
+    url = "#{solis_conf[:sparql_endpoint]}"
 
     response = HTTP.post(url, form: data, headers: {'Accept' => env['HTTP_ACCEPT'] || 'text/turtle'})
     if response.status == 200

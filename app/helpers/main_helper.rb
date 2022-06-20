@@ -2,9 +2,14 @@ require 'json'
 require 'stopwords'
 require 'solis/store/sparql/client'
 
+def solis_conf
+  raise 'Please set SERVICE_ROLE environment parameter' unless ENV.include?('SERVICE_ROLE')
+  Solis::ConfigFile[:services][ENV['SERVICE_ROLE'].to_sym][:solis]
+end
+
 module Sinatra
   module MainHelper
-    def endpoints(base_path=Solis::ConfigFile[:services][$SERVICE_ROLE][:base_path])
+    def endpoints(base_path=solis_conf[:base_path])
       settings.solis.list_shapes.map {|m| "#{base_path}#{m.tableize}"}.sort
     end
 
@@ -45,28 +50,6 @@ module Sinatra
       hash_or_array.delete_if(&p)
     end
 
-    def storage?
-      sparql = SPARQL::Client.new(Solis::ConfigFile[:solis][:sparql_endpoint])
-
-      sparql.query("ASK WHERE { ?s ?p ?o }")
-    rescue StandardError => e
-      return false
-    end
-
-    def audit_api?
-      result = HTTP.get("#{Solis::ConfigFile[:services][:audit][:host]}/_audit/ping")
-      return ::JSON.parse(result.body.to_s)
-    rescue HTTP::Error => e
-      return {'api': false, 'storage': false}
-    end
-
-    def search_api?
-      result = HTTP.get("#{Solis::ConfigFile[:services][:search][:host]}/_search/ping")
-      return ::JSON.parse(result.body.to_s)
-    rescue HTTP::Error => e
-      return {'api': false, 'storage': false}
-    end
-
     def load_context
       id = '0'
       other_data = {}
@@ -82,7 +65,7 @@ module Sinatra
         logger.warn("No X-Frontend header found for : #{request.url}")
       end
 
-      OpenStruct.new(query_user: id, other_data: other_data, language: params[:language] || Solis::ConfigFile[:solis][:language] || 'nl')
+      OpenStruct.new(query_user: id, other_data: other_data, language: params[:language] ||solis_conf[:language] || 'nl')
     end
 
     def logic_ui_lijst(key)
@@ -96,7 +79,7 @@ module Sinatra
         return result unless File.exist?(filename)
 
         q = File.read(filename)
-        c = Solis::Store::Sparql::Client.new(Solis::ConfigFile[:solis][:sparql_endpoint], Solis::ConfigFile[:solis][:graph_name])
+        c = Solis::Store::Sparql::Client.new(solis_conf[:sparql_endpoint], solis_conf[:graph_name])
         r = c.query(q)
         t = r.query('select * where{?s ?p ?o}')
 

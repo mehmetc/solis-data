@@ -2,7 +2,8 @@ require 'active_support/all'
 require 'sinatra/base'
 require 'http/accept'
 require 'solis'
-require 'lib/kafka_queue'
+#require 'lib/kafka_queue'
+require 'lib/file_queue'
 
 require 'config/hooks' if File.exist?('config/hooks.rb')
 require 'lib/redis_queue'
@@ -12,9 +13,10 @@ class GenericController < Sinatra::Base
   helpers Sinatra::MainHelper
 
   #  DATA_QUEUE =  Rdkafka::Config.new({:"bootstrap.servers" => "kafka:9092"}).producer
-  DATA_QUEUE = KafkaQueue.new(Solis::ConfigFile[:kafka][:name], Solis::ConfigFile[:kafka][:config])
+  DATA_QUEUE = FileQueue.new(Solis::ConfigFile[:kafka][:name])
+  #DATA_QUEUE = KafkaQueue.new(Solis::ConfigFile[:kafka][:name], Solis::ConfigFile[:kafka][:config])
   #DATA_QUEUE = RedisQueue.new(Solis::ConfigFile[:redis][:queue])
-  SOLIS_CONF = Solis::ConfigFile[:solis].merge(Solis::HooksHelper.hooks(DATA_QUEUE))
+  SOLIS_CONF = solis_conf.merge(Solis::HooksHelper.hooks(DATA_QUEUE))
 
   configure do
     mime_type :jsonapi, 'application/vnd.api+json'
@@ -29,7 +31,7 @@ class GenericController < Sinatra::Base
     set :role, ENV['SERVICE_ROLE']
     set :cache, Moneta.new(:File, dir: Solis::ConfigFile[:cache], expires: 86400)
 
-    set :solis, Solis::Graph.new(Solis::Shape::Reader::File.read(Solis::ConfigFile[:shape]),
+    set :solis, Solis::Graph.new(Solis::Shape::Reader::File.read(solis_conf[:shape]),
                                        SOLIS_CONF)
   end
 
