@@ -40,14 +40,19 @@ class FileQueue
   def pop
     data = nil
     in_filename = Dir.glob("#{@in_dir}/*.f").sort.first
+    out_filename = ''
     if in_filename
       data = JSON.parse(File.read(in_filename))
 
       filename = File.basename(in_filename)
       out_filename = "#{@out_dir}/#{filename}"
-      FileUtils.move(in_filename, out_filename)
     end
 
+    data
+  rescue StandardError => e
+    puts e.message
+  else
+    FileUtils.move(in_filename, out_filename) unless out_filename.empty?
     data
   end
 
