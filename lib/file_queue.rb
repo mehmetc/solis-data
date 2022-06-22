@@ -2,18 +2,20 @@ require 'fileutils'
 require 'json'
 
 class FileQueue
-  attr_accessor :base_dir, :in_dir, :out_dir
+  attr_accessor :base_dir, :in_dir, :out_dir, :fail_dir
   include Enumerable
 
   def initialize(name, options={})
     @name = name
-    @base_dir = options[:base_dir] || "#{Dir.pwd}/data"
+    @base_dir = File.absolute_path(options[:base_dir] || "#{Dir.pwd}/data")
 
     @in_dir = "#{@base_dir}/in/#{name}"
     @out_dir = "#{@base_dir}/out/#{name}"
+    @fail_dir = "#{@base_dir}/fail/#{name}"
     FileUtils.mkdir_p(@base_dir) unless Dir.exist?(@base_dir)
     FileUtils.mkdir_p(@in_dir) unless Dir.exist?(@in_dir)
     FileUtils.mkdir_p(@out_dir) unless Dir.exist?(@out_dir)
+    FileUtils.mkdir_p(@fail_dir) unless Dir.exist?(@fail_dir)
   end
 
   def count
@@ -41,11 +43,13 @@ class FileQueue
     data = nil
     in_filename = Dir.glob("#{@in_dir}/*.f").sort.first
     out_filename = ''
+    fail_filename = ''
     if in_filename
       data = JSON.parse(File.read(in_filename))
 
       filename = File.basename(in_filename)
       out_filename = "#{@out_dir}/#{filename}"
+      fail_filename = "#{@fail_dir}/#{filename}"
     end
 
     data

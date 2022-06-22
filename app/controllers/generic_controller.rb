@@ -14,7 +14,7 @@ class GenericController < Sinatra::Base
   helpers Sinatra::MainHelper
 
   #  DATA_QUEUE =  Rdkafka::Config.new({:"bootstrap.servers" => "kafka:9092"}).producer
-  DATA_QUEUE = FileQueue.new(Solis::ConfigFile[:kafka][:name])
+  DATA_QUEUE = FileQueue.new(Solis::ConfigFile[:kafka][:name], base_dir: Solis::ConfigFile[:events])
   #DATA_QUEUE = KafkaQueue.new(Solis::ConfigFile[:kafka][:name], Solis::ConfigFile[:kafka][:config])
   #DATA_QUEUE = RedisQueue.new(Solis::ConfigFile[:redis][:queue])
   SOLIS_CONF = solis_conf.key?(:hooks) && File.exist?(solis_conf[:hooks]) ? solis_conf.merge(Solis::HooksHelper.hooks(DATA_QUEUE)) : solis_conf
