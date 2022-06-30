@@ -1,17 +1,17 @@
-@prefix : <https://abv.libis.be/> .
+@prefix : <https://data.archiefpunt.be/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <https://abv.libis.be/> .
+@base <https://data.archiefpunt.be/> .
 
-<https://abv.libis.be/> rdf:type owl:Ontology ;
-                         <dc11:creator> "Archiefpunt, Meemo, KADOC, LIBIS" ;
-                         <dc11:date> "2022-03-22 10:59:02 +0100" ;
-                         <dc11:description> "Archiefbank ontology" ;
-                         <dc11:title> "Archiefbank ontology" ;
-                         owl:versionInfo "1.0.0" .
+<https://data.archiefpunt.be/> rdf:type owl:Ontology ;
+                                <dc11:creator> "Archiefpunt, Meemo, KADOC, LIBIS" ;
+                                <dc11:date> "2022-06-30 04:30:28 +0200" ;
+                                <dc11:description> "Archiefbank ontology" ;
+                                <dc11:title> "Archiefbank ontology" ;
+                                owl:versionInfo "1.0.0" .
 
 #################################################################
 #    Annotation properties
@@ -41,23 +41,19 @@
 xsd:date rdf:type rdfs:Datatype .
 
 
-###  http://www.w3.org/2001/XMLSchema#duration
-xsd:duration rdf:type rdfs:Datatype .
-
-
 #################################################################
 #    Object Properties
 #################################################################
 
-###  https://abv.libis.be/_meta
-:_meta rdf:type owl:ObjectProperty ;
-       rdfs:domain :EntiteitBasis ;
-       rdfs:range :EntiteitMetadata ;
-       rdfs:comment "" ;
-       rdfs:label "_meta" .
+###  https://data.archiefpunt.be/_audit
+:_audit rdf:type owl:ObjectProperty ;
+        rdfs:domain :EntiteitBasis ;
+        rdfs:range :Audit ;
+        rdfs:comment "" ;
+        rdfs:label "_audit" .
 
 
-###  https://abv.libis.be/aangroei
+###  https://data.archiefpunt.be/aangroei
 :aangroei rdf:type owl:ObjectProperty ;
           rdfs:domain :Archief ;
           rdfs:range :Aangroei ;
@@ -65,7 +61,7 @@ xsd:duration rdf:type rdfs:Datatype .
           rdfs:label "aangroei" .
 
 
-###  https://abv.libis.be/adres
+###  https://data.archiefpunt.be/adres
 :adres rdf:type owl:ObjectProperty ;
        rdfs:domain :Beheerder ;
        rdfs:range :Adres ;
@@ -73,7 +69,7 @@ xsd:duration rdf:type rdfs:Datatype .
        rdfs:label "adres" .
 
 
-###  https://abv.libis.be/agent
+###  https://data.archiefpunt.be/agent
 :agent rdf:type owl:ObjectProperty ;
        rdfs:domain :Associatie ,
                    :Beheerder ,
@@ -83,7 +79,7 @@ xsd:duration rdf:type rdfs:Datatype .
        rdfs:label "agent" .
 
 
-###  https://abv.libis.be/associatie
+###  https://data.archiefpunt.be/associatie
 :associatie rdf:type owl:ObjectProperty ;
             rdfs:domain :Archief ;
             rdfs:range :Associatie ;
@@ -91,7 +87,7 @@ xsd:duration rdf:type rdfs:Datatype .
             rdfs:label "associatie" .
 
 
-###  https://abv.libis.be/associaties
+###  https://data.archiefpunt.be/associaties
 :associaties rdf:type owl:ObjectProperty ;
              rdfs:domain :Agent ;
              rdfs:range :Associatie ;
@@ -99,7 +95,7 @@ xsd:duration rdf:type rdfs:Datatype .
              rdfs:label "associaties" .
 
 
-###  https://abv.libis.be/auteur
+###  https://data.archiefpunt.be/auteur
 :auteur rdf:type owl:ObjectProperty ;
         rdfs:domain :Publicatie ;
         rdfs:range :Naam ;
@@ -107,7 +103,7 @@ xsd:duration rdf:type rdfs:Datatype .
         rdfs:label "auteur" .
 
 
-###  https://abv.libis.be/beheerder
+###  https://data.archiefpunt.be/beheerder
 :beheerder rdf:type owl:ObjectProperty ;
            rdfs:domain :Archief ;
            rdfs:range :Beheerder ;
@@ -117,7 +113,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
            rdfs:label "beheerder" .
 
 
-###  https://abv.libis.be/bereikbaarheid
+###  https://data.archiefpunt.be/bereikbaarheid
 :bereikbaarheid rdf:type owl:ObjectProperty ;
                 rdfs:domain :Beheerder ;
                 rdfs:range :Bereikbaarheid ;
@@ -125,7 +121,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
                 rdfs:label "bereikbaarheid" .
 
 
-###  https://abv.libis.be/beschrijvingsniveau
+###  https://data.archiefpunt.be/beschrijvingsniveau
 :beschrijvingsniveau rdf:type owl:ObjectProperty ;
                      rdfs:domain :Archief ;
                      rdfs:range :Beschrijvingsniveau ;
@@ -133,7 +129,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
                      rdfs:label "beschrijvingsniveau" .
 
 
-###  https://abv.libis.be/bron
+###  https://data.archiefpunt.be/bron
 :bron rdf:type owl:ObjectProperty ;
       rdfs:domain :Identificatienummer ;
       rdfs:range :Agent ;
@@ -141,15 +137,16 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
       rdfs:label "bron" .
 
 
-###  https://abv.libis.be/bron_waardering
-:bron_waardering rdf:type owl:ObjectProperty ;
-                 rdfs:domain :Waardering ;
-                 rdfs:range :Publicatie ;
-                 rdfs:comment "Verwijzing naar een publicatie die als bron werd gebruikt voor deze waardering. " ;
-                 rdfs:label "bron_waardering" .
+###  https://data.archiefpunt.be/datering_systematisch
+:datering_systematisch rdf:type owl:ObjectProperty ;
+                       rdfs:domain :Agent ,
+                                   :Archief ;
+                       rdfs:range <http://www.w3.org/2000/10/swap/time#DateTimeInterval> ;
+                       rdfs:comment "Jaartallen van bereik van het archief: uit welke periode stammen de documenten." ;
+                       rdfs:label "datering_systematisch" .
 
 
-###  https://abv.libis.be/erkenning
+###  https://data.archiefpunt.be/erkenning
 :erkenning rdf:type owl:ObjectProperty ;
            rdfs:domain :Beheerder ;
            rdfs:range :Erkenning ;
@@ -157,7 +154,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
            rdfs:label "erkenning" .
 
 
-###  https://abv.libis.be/functie_beroep_activiteit
+###  https://data.archiefpunt.be/functie_beroep_activiteit
 :functie_beroep_activiteit rdf:type owl:ObjectProperty ;
                            rdfs:domain :Samensteller ;
                            rdfs:range :Functie ;
@@ -165,7 +162,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
                            rdfs:label "functie_beroep_activiteit" .
 
 
-###  https://abv.libis.be/gemeente
+###  https://data.archiefpunt.be/gemeente
 :gemeente rdf:type owl:ObjectProperty ;
           rdfs:domain :Adres ;
           rdfs:range :Plaats ;
@@ -173,19 +170,10 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
           rdfs:label "gemeente" .
 
 
-###  https://abv.libis.be/identificatie
-:identificatie rdf:type owl:ObjectProperty ;
-               rdfs:domain :Agent ;
-               rdfs:range :Identificatienummer ;
-               rdfs:comment """Herhaalbaar om verschillende IDs op te kunnen nemen.
-Eigen persistente URI wordt door het systeem toegekend en is dus ‘verplicht’.
-Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
-               rdfs:label "identificatie" .
-
-
-###  https://abv.libis.be/identificatienummer
+###  https://data.archiefpunt.be/identificatienummer
 :identificatienummer rdf:type owl:ObjectProperty ;
-                     rdfs:domain :Archief ,
+                     rdfs:domain :Agent ,
+                                 :Archief ,
                                  :Concept ,
                                  :Plaats ,
                                  :Publicatie ;
@@ -194,7 +182,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                      rdfs:label "identificatienummer" .
 
 
-###  https://abv.libis.be/is_onderdeel_van
+###  https://data.archiefpunt.be/is_onderdeel_van
 :is_onderdeel_van rdf:type owl:ObjectProperty ;
                   rdfs:domain :Archief ;
                   rdfs:range :Archief ;
@@ -202,7 +190,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                   rdfs:label "is_onderdeel_van" .
 
 
-###  https://abv.libis.be/juridische_beperking
+###  https://data.archiefpunt.be/juridische_beperking
 :juridische_beperking rdf:type owl:ObjectProperty ;
                       rdfs:domain :Archief ;
                       rdfs:range :JuridischeBeperking ;
@@ -210,15 +198,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                       rdfs:label "juridische_beperking" .
 
 
-###  https://abv.libis.be/naam
-:naam rdf:type owl:ObjectProperty ;
-      rdfs:domain :Agent ;
-      rdfs:range :Naam ;
-      rdfs:comment "Herhaalbaar om naamsvarianten te documenteren." ;
-      rdfs:label "naam" .
-
-
-###  https://abv.libis.be/omvang
+###  https://data.archiefpunt.be/omvang
 :omvang rdf:type owl:ObjectProperty ;
         rdfs:domain :Archief ;
         rdfs:range :Omvang ;
@@ -226,7 +206,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
         rdfs:label "omvang" .
 
 
-###  https://abv.libis.be/onderwerp
+###  https://data.archiefpunt.be/onderwerp
 :onderwerp rdf:type owl:ObjectProperty ;
            rdfs:domain :Associatie ;
            rdfs:range :Onderwerp ;
@@ -234,7 +214,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "onderwerp" .
 
 
-###  https://abv.libis.be/ordening
+###  https://data.archiefpunt.be/ordening
 :ordening rdf:type owl:ObjectProperty ;
           rdfs:domain :Archief ;
           rdfs:range :Ordening ;
@@ -242,7 +222,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
           rdfs:label "ordening" .
 
 
-###  https://abv.libis.be/periode
+###  https://data.archiefpunt.be/periode
 :periode rdf:type owl:ObjectProperty ;
          rdfs:domain :Associatie ;
          rdfs:range :Periode ;
@@ -250,7 +230,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
          rdfs:label "periode" .
 
 
-###  https://abv.libis.be/plaats
+###  https://data.archiefpunt.be/plaats
 :plaats rdf:type owl:ObjectProperty ;
         rdfs:domain :Associatie ;
         rdfs:range :Plaats ;
@@ -258,7 +238,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
         rdfs:label "plaats" .
 
 
-###  https://abv.libis.be/plaatsnaam
+###  https://data.archiefpunt.be/plaatsnaam
 :plaatsnaam rdf:type owl:ObjectProperty ;
             rdfs:domain :Plaats ;
             rdfs:range :Naam ;
@@ -266,7 +246,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
             rdfs:label "plaatsnaam" .
 
 
-###  https://abv.libis.be/raadplegingsstatus
+###  https://data.archiefpunt.be/raadplegingsstatus
 :raadplegingsstatus rdf:type owl:ObjectProperty ;
                     rdfs:domain :Raadplegingsvoorwaarde ;
                     rdfs:range :Raadplegingsstatus ;
@@ -274,7 +254,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                     rdfs:label "raadplegingsstatus" .
 
 
-###  https://abv.libis.be/raadplegingsvoorwaarde
+###  https://data.archiefpunt.be/raadplegingsvoorwaarde
 :raadplegingsvoorwaarde rdf:type owl:ObjectProperty ;
                         rdfs:domain :Archief ;
                         rdfs:range :Raadplegingsvoorwaarde ;
@@ -282,7 +262,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                         rdfs:label "raadplegingsvoorwaarde" .
 
 
-###  https://abv.libis.be/rechtenstatus_metadata
+###  https://data.archiefpunt.be/rechtenstatus_metadata
 :rechtenstatus_metadata rdf:type owl:ObjectProperty ;
                         rdfs:domain :Archief ;
                         rdfs:range :Rechtenstatus ;
@@ -290,7 +270,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                         rdfs:label "rechtenstatus_metadata" .
 
 
-###  https://abv.libis.be/rol_beheerder
+###  https://data.archiefpunt.be/rol_beheerder
 :rol_beheerder rdf:type owl:ObjectProperty ;
                rdfs:domain :Archief ;
                rdfs:range :RolBeheerder ;
@@ -298,7 +278,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                rdfs:label "rol_beheerder" .
 
 
-###  https://abv.libis.be/rol_samensteller
+###  https://data.archiefpunt.be/rol_samensteller
 :rol_samensteller rdf:type owl:ObjectProperty ;
                   rdfs:domain :Archief ;
                   rdfs:range :RolSamensteller ;
@@ -306,7 +286,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                   rdfs:label "rol_samensteller" .
 
 
-###  https://abv.libis.be/samensteller
+###  https://data.archiefpunt.be/samensteller
 :samensteller rdf:type owl:ObjectProperty ;
               rdfs:domain :Archief ;
               rdfs:range :Samensteller ;
@@ -314,7 +294,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
               rdfs:label "samensteller" .
 
 
-###  https://abv.libis.be/selectie
+###  https://data.archiefpunt.be/selectie
 :selectie rdf:type owl:ObjectProperty ;
           rdfs:domain :Archief ;
           rdfs:range :Waardering ;
@@ -322,7 +302,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
           rdfs:label "selectie" .
 
 
-###  https://abv.libis.be/taal
+###  https://data.archiefpunt.be/taal
 :taal rdf:type owl:ObjectProperty ;
       rdfs:domain :Agent ,
                   :Archief ,
@@ -332,16 +312,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
       rdfs:label "taal" .
 
 
-###  https://abv.libis.be/toegang
-:toegang rdf:type owl:ObjectProperty ;
-         rdfs:domain :Archief ,
-                     :Beheerder ;
-         rdfs:range :Publicatie ;
-         rdfs:comment "Verwijzing naar de toegang voor de archieven/collecties die de Agent bewaard." ;
-         rdfs:label "toegang" .
-
-
-###  https://abv.libis.be/trefwoord
+###  https://data.archiefpunt.be/trefwoord
 :trefwoord rdf:type owl:ObjectProperty ;
            rdfs:domain :Omvang ,
                        :Ordening ;
@@ -350,7 +321,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "trefwoord" .
 
 
-###  https://abv.libis.be/type
+###  https://data.archiefpunt.be/type
 :type rdf:type owl:ObjectProperty ;
       rdfs:domain :Agent ,
                   :Concept ,
@@ -360,7 +331,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
       rdfs:label "type" .
 
 
-###  https://abv.libis.be/type_naam
+###  https://data.archiefpunt.be/type_naam
 :type_naam rdf:type owl:ObjectProperty ;
            rdfs:domain :Naam ;
            rdfs:range :TypeNaam ;
@@ -368,7 +339,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "type_naam" .
 
 
-###  https://abv.libis.be/type_vergelijking
+###  https://data.archiefpunt.be/type_vergelijking
 :type_vergelijking rdf:type owl:ObjectProperty ;
                    rdfs:domain :Vergelijking ;
                    rdfs:range :TypeVergelijking ;
@@ -376,7 +347,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                    rdfs:label "type_vergelijking" .
 
 
-###  https://abv.libis.be/type_waarde
+###  https://data.archiefpunt.be/type_waarde
 :type_waarde rdf:type owl:ObjectProperty ;
              rdfs:domain :Waarde ;
              rdfs:range :TypeWaarde ;
@@ -384,7 +355,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
              rdfs:label "type_waarde" .
 
 
-###  https://abv.libis.be/vergelijking
+###  https://data.archiefpunt.be/vergelijking
 :vergelijking rdf:type owl:ObjectProperty ;
               rdfs:domain :Waardering ;
               rdfs:range :Vergelijking ;
@@ -392,7 +363,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
               rdfs:label "vergelijking" .
 
 
-###  https://abv.libis.be/waarde
+###  https://data.archiefpunt.be/waarde
 :waarde rdf:type owl:ObjectProperty ;
         rdfs:domain :Identificatienummer ,
                     :Naam ,
@@ -410,23 +381,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
 #    Data properties
 #################################################################
 
-###  https://abv.libis.be/aangemaakt_op
-:aangemaakt_op rdf:type owl:DatatypeProperty ;
-               rdfs:domain :EntiteitMetadata ;
-               rdfs:range xsd:date ;
-               rdfs:comment "datum waarop record werd aangemaakt" ;
-               rdfs:label "aangemaakt_op" .
-
-
-###  https://abv.libis.be/aangepast_op
-:aangepast_op rdf:type owl:DatatypeProperty ;
-              rdfs:domain :EntiteitMetadata ;
-              rdfs:range xsd:date ;
-              rdfs:comment "datum waarop record is aangepast" ;
-              rdfs:label "aangepast_op" .
-
-
-###  https://abv.libis.be/aangroei_text
+###  https://data.archiefpunt.be/aangroei_text
 :aangroei_text rdf:type owl:DatatypeProperty ;
                rdfs:domain :Archief ;
                rdfs:range xsd:string ;
@@ -434,7 +389,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                rdfs:label "aangroei_text" .
 
 
-###  https://abv.libis.be/aantekening_archivaris
+###  https://data.archiefpunt.be/aantekening_archivaris
 :aantekening_archivaris rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Archief ;
                         rdfs:range xsd:string ;
@@ -442,7 +397,16 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                         rdfs:label "aantekening_archivaris" .
 
 
-###  https://abv.libis.be/bibliografie_agent
+###  https://data.archiefpunt.be/az
+:az rdf:type owl:DatatypeProperty ;
+    rdfs:domain :UiArchiefvormerLijst ,
+                :UiBewaarplaatsLijst ;
+    rdfs:range xsd:string ;
+    rdfs:comment "eerste letter van de naam" ;
+    rdfs:label "az" .
+
+
+###  https://data.archiefpunt.be/bibliografie_agent
 :bibliografie_agent rdf:type owl:DatatypeProperty ;
                     rdfs:domain :Agent ;
                     rdfs:range xsd:string ;
@@ -450,7 +414,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                     rdfs:label "bibliografie_agent" .
 
 
-###  https://abv.libis.be/bibliografie_archief
+###  https://data.archiefpunt.be/bibliografie_archief
 :bibliografie_archief rdf:type owl:DatatypeProperty ;
                       rdfs:domain :Archief ;
                       rdfs:range xsd:string ;
@@ -458,7 +422,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                       rdfs:label "bibliografie_archief" .
 
 
-###  https://abv.libis.be/bibliografische_verwijzing
+###  https://data.archiefpunt.be/bibliografische_verwijzing
 :bibliografische_verwijzing rdf:type owl:DatatypeProperty ;
                             rdfs:domain :Publicatie ;
                             rdfs:range xsd:string ;
@@ -466,7 +430,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                             rdfs:label "bibliografische_verwijzing" .
 
 
-###  https://abv.libis.be/bijdragers
+###  https://data.archiefpunt.be/bijdragers
 :bijdragers rdf:type owl:DatatypeProperty ;
             rdfs:domain :Waardering ;
             rdfs:range xsd:string ;
@@ -474,7 +438,15 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
             rdfs:label "bijdragers" .
 
 
-###  https://abv.libis.be/bronnen_agent
+###  https://data.archiefpunt.be/bron_waardering
+:bron_waardering rdf:type owl:DatatypeProperty ;
+                 rdfs:domain :Waardering ;
+                 rdfs:range xsd:string ;
+                 rdfs:comment "Verwijzing naar een publicatie die als bron werd gebruikt voor deze waardering. " ;
+                 rdfs:label "bron_waardering" .
+
+
+###  https://data.archiefpunt.be/bronnen_agent
 :bronnen_agent rdf:type owl:DatatypeProperty ;
                rdfs:domain :Agent ;
                rdfs:range xsd:string ;
@@ -482,7 +454,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                rdfs:label "bronnen_agent" .
 
 
-###  https://abv.libis.be/bronnen_archief
+###  https://data.archiefpunt.be/bronnen_archief
 :bronnen_archief rdf:type owl:DatatypeProperty ;
                  rdfs:domain :Archief ;
                  rdfs:range xsd:string ;
@@ -490,23 +462,32 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                  rdfs:label "bronnen_archief" .
 
 
-###  https://abv.libis.be/bronverwijzing_archief
+###  https://data.archiefpunt.be/bronverwijzing_archief
 :bronverwijzing_archief rdf:type owl:DatatypeProperty ;
                         rdfs:domain :Archief ;
                         rdfs:range xsd:string ;
-                        rdfs:comment "Correcte verwijzing naar het record en naar het archief in de Chicagostijl." ;
+                        rdfs:comment "Correcte verwijzing naar het archief in de Chicagostijl." ;
                         rdfs:label "bronverwijzing_archief" .
 
 
-###  https://abv.libis.be/bronverwijzing_record
+###  https://data.archiefpunt.be/bronverwijzing_record
 :bronverwijzing_record rdf:type owl:DatatypeProperty ;
-                       rdfs:domain :Archief ;
+                       rdfs:domain :Agent ,
+                                   :Archief ;
                        rdfs:range xsd:string ;
-                       rdfs:comment "Correcte verwijzing naar het record en naar het archief in de Chicagostijl." ;
+                       rdfs:comment "Correcte verwijzing naar het record in de Chicagostijl." ;
                        rdfs:label "bronverwijzing_record" .
 
 
-###  https://abv.libis.be/contractuele_beperking
+###  https://data.archiefpunt.be/change_set
+:change_set rdf:type owl:DatatypeProperty ;
+            rdfs:domain :Audit ;
+            rdfs:range xsd:anyURI ;
+            rdfs:comment "" ;
+            rdfs:label "change_set" .
+
+
+###  https://data.archiefpunt.be/contractuele_beperking
 :contractuele_beperking rdf:type owl:DatatypeProperty ;
                         rdfs:domain :JuridischeBeperking ;
                         rdfs:range xsd:boolean ;
@@ -514,16 +495,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                         rdfs:label "contractuele_beperking" .
 
 
-###  https://abv.libis.be/datering_systematisch
-:datering_systematisch rdf:type owl:DatatypeProperty ;
-                       rdfs:domain :Agent ,
-                                   :Archief ;
-                       rdfs:range xsd:duration ;
-                       rdfs:comment "Jaartallen van bereik van het archief: uit welke periode stammen de documenten." ;
-                       rdfs:label "datering_systematisch" .
-
-
-###  https://abv.libis.be/datering_text
+###  https://data.archiefpunt.be/datering_text
 :datering_text rdf:type owl:DatatypeProperty ;
                rdfs:domain :Agent ,
                            :Archief ;
@@ -532,7 +504,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                rdfs:label "datering_text" .
 
 
-###  https://abv.libis.be/datum_uitgave
+###  https://data.archiefpunt.be/datum_uitgave
 :datum_uitgave rdf:type owl:DatatypeProperty ;
                rdfs:domain :Publicatie ;
                rdfs:range xsd:date ;
@@ -540,7 +512,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                rdfs:label "datum_uitgave" .
 
 
-###  https://abv.libis.be/datum_waardering
+###  https://data.archiefpunt.be/datum_waardering
 :datum_waardering rdf:type owl:DatatypeProperty ;
                   rdfs:domain :Waardering ;
                   rdfs:range xsd:date ;
@@ -548,7 +520,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                   rdfs:label "datum_waardering" .
 
 
-###  https://abv.libis.be/definitie
+###  https://data.archiefpunt.be/definitie
 :definitie rdf:type owl:DatatypeProperty ;
            rdfs:domain :Concept ;
            rdfs:range rdf:langString ;
@@ -556,7 +528,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "definitie" .
 
 
-###  https://abv.libis.be/email
+###  https://data.archiefpunt.be/email
 :email rdf:type owl:DatatypeProperty ;
        rdfs:domain :Beheerder ;
        rdfs:range xsd:string ;
@@ -564,7 +536,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
        rdfs:label "email" .
 
 
-###  https://abv.libis.be/gebouw
+###  https://data.archiefpunt.be/gebouw
 :gebouw rdf:type owl:DatatypeProperty ;
         rdfs:domain :Beheerder ;
         rdfs:range xsd:string ;
@@ -572,7 +544,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
         rdfs:label "gebouw" .
 
 
-###  https://abv.libis.be/geschiedenis_agent
+###  https://data.archiefpunt.be/geschiedenis_agent
 :geschiedenis_agent rdf:type owl:DatatypeProperty ;
                     rdfs:domain :Agent ;
                     rdfs:range rdf:langString ;
@@ -580,7 +552,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                     rdfs:label "geschiedenis_agent" .
 
 
-###  https://abv.libis.be/geschiedenis_archief
+###  https://data.archiefpunt.be/geschiedenis_archief
 :geschiedenis_archief rdf:type owl:DatatypeProperty ;
                       rdfs:domain :Archief ;
                       rdfs:range rdf:langString ;
@@ -588,7 +560,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                       rdfs:label "geschiedenis_archief" .
 
 
-###  https://abv.libis.be/gevoelig_voor_auteursrechtelijkebescherming
+###  https://data.archiefpunt.be/gevoelig_voor_auteursrechtelijkebescherming
 :gevoelig_voor_auteursrechtelijkebescherming rdf:type owl:DatatypeProperty ;
                                              rdfs:domain :JuridischeBeperking ;
                                              rdfs:range xsd:boolean ;
@@ -596,9 +568,10 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                                              rdfs:label "gevoelig_voor_auteursrechtelijkebescherming" .
 
 
-###  https://abv.libis.be/id
+###  https://data.archiefpunt.be/id
 :id rdf:type owl:DatatypeProperty ;
     rdfs:domain :Aangroei ,
+                :Audit ,
                 :Bereikbaarheid ,
                 :Beschrijvingsniveau ,
                 :BibliografieArchief ,
@@ -630,13 +603,15 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                 :TypeNaam ,
                 :TypeVergelijking ,
                 :TypeWaarde ,
+                :UiArchiefvormerLijst ,
+                :UiBewaarplaatsLijst ,
                 :Waarde ;
     rdfs:range xsd:string ;
     rdfs:comment "systeem UUID" ;
     rdfs:label "id" .
 
 
-###  https://abv.libis.be/inhoud_en_bereik
+###  https://data.archiefpunt.be/inhoud_en_bereik
 :inhoud_en_bereik rdf:type owl:DatatypeProperty ;
                   rdfs:domain :Archief ;
                   rdfs:range rdf:langString ;
@@ -644,7 +619,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                   rdfs:label "inhoud_en_bereik" .
 
 
-###  https://abv.libis.be/label
+###  https://data.archiefpunt.be/label
 :label rdf:type owl:DatatypeProperty ;
        rdfs:domain :Concept ;
        rdfs:range rdf:langString ;
@@ -652,7 +627,17 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
        rdfs:label "label" .
 
 
-###  https://abv.libis.be/openingsuren
+###  https://data.archiefpunt.be/naam
+:naam rdf:type owl:DatatypeProperty ;
+      rdfs:domain :Agent ,
+                  :UiArchiefvormerLijst ,
+                  :UiBewaarplaatsLijst ;
+      rdfs:range rdf:langString ;
+      rdfs:comment "Naam van de bewaarplaats(Beheerder)" ;
+      rdfs:label "naam" .
+
+
+###  https://data.archiefpunt.be/openingsuren
 :openingsuren rdf:type owl:DatatypeProperty ;
               rdfs:domain :Beheerder ;
               rdfs:range xsd:string ;
@@ -660,7 +645,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
               rdfs:label "openingsuren" .
 
 
-###  https://abv.libis.be/opmerking
+###  https://data.archiefpunt.be/opmerking
 :opmerking rdf:type owl:DatatypeProperty ;
            rdfs:domain :Agent ;
            rdfs:range xsd:string ;
@@ -668,7 +653,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "opmerking" .
 
 
-###  https://abv.libis.be/opmerkingen
+###  https://data.archiefpunt.be/opmerkingen
 :opmerkingen rdf:type owl:DatatypeProperty ;
              rdfs:domain :Waardering ;
              rdfs:range xsd:string ;
@@ -676,7 +661,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
              rdfs:label "opmerkingen" .
 
 
-###  https://abv.libis.be/ordening_text
+###  https://data.archiefpunt.be/ordening_text
 :ordening_text rdf:type owl:DatatypeProperty ;
                rdfs:domain :Archief ;
                rdfs:range xsd:string ;
@@ -684,7 +669,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                rdfs:label "ordening_text" .
 
 
-###  https://abv.libis.be/plaats_van_uitgave
+###  https://data.archiefpunt.be/plaats_van_uitgave
 :plaats_van_uitgave rdf:type owl:DatatypeProperty ;
                     rdfs:domain :Publicatie ;
                     rdfs:range xsd:string ;
@@ -692,7 +677,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                     rdfs:label "plaats_van_uitgave" .
 
 
-###  https://abv.libis.be/privacy_gevoelig
+###  https://data.archiefpunt.be/privacy_gevoelig
 :privacy_gevoelig rdf:type owl:DatatypeProperty ;
                   rdfs:domain :JuridischeBeperking ;
                   rdfs:range xsd:boolean ;
@@ -700,7 +685,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                   rdfs:label "privacy_gevoelig" .
 
 
-###  https://abv.libis.be/reeks
+###  https://data.archiefpunt.be/reeks
 :reeks rdf:type owl:DatatypeProperty ;
        rdfs:domain :Publicatie ;
        rdfs:range xsd:string ;
@@ -708,7 +693,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
        rdfs:label "reeks" .
 
 
-###  https://abv.libis.be/reeksnummer
+###  https://data.archiefpunt.be/reeksnummer
 :reeksnummer rdf:type owl:DatatypeProperty ;
              rdfs:domain :Publicatie ;
              rdfs:range xsd:string ;
@@ -716,7 +701,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
              rdfs:label "reeksnummer" .
 
 
-###  https://abv.libis.be/straat_en_nummer
+###  https://data.archiefpunt.be/straat_en_nummer
 :straat_en_nummer rdf:type owl:DatatypeProperty ;
                   rdfs:domain :Adres ;
                   rdfs:range xsd:string ;
@@ -724,7 +709,15 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                   rdfs:label "straat_en_nummer" .
 
 
-###  https://abv.libis.be/taal_text
+###  https://data.archiefpunt.be/subject_of_change
+:subject_of_change rdf:type owl:DatatypeProperty ;
+                   rdfs:domain :Audit ;
+                   rdfs:range xsd:anyURI ;
+                   rdfs:comment "" ;
+                   rdfs:label "subject_of_change" .
+
+
+###  https://data.archiefpunt.be/taal_text
 :taal_text rdf:type owl:DatatypeProperty ;
            rdfs:domain :Archief ;
            rdfs:range xsd:string ;
@@ -732,7 +725,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "taal_text" .
 
 
-###  https://abv.libis.be/tekst
+###  https://data.archiefpunt.be/tekst
 :tekst rdf:type owl:DatatypeProperty ;
        rdfs:domain :Raadplegingsvoorwaarde ;
        rdfs:range xsd:string ;
@@ -740,7 +733,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
        rdfs:label "tekst" .
 
 
-###  https://abv.libis.be/telefoon
+###  https://data.archiefpunt.be/telefoon
 :telefoon rdf:type owl:DatatypeProperty ;
           rdfs:domain :Beheerder ;
           rdfs:range xsd:string ;
@@ -748,7 +741,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
           rdfs:label "telefoon" .
 
 
-###  https://abv.libis.be/titel
+###  https://data.archiefpunt.be/titel
 :titel rdf:type owl:DatatypeProperty ;
        rdfs:domain :Archief ,
                    :Publicatie ;
@@ -757,7 +750,16 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
        rdfs:label "titel" .
 
 
-###  https://abv.libis.be/toegangsvoorwaarden
+###  https://data.archiefpunt.be/toegang
+:toegang rdf:type owl:DatatypeProperty ;
+         rdfs:domain :Archief ,
+                     :Beheerder ;
+         rdfs:range xsd:string ;
+         rdfs:comment "Verwijzing naar de toegang voor de archieven/collecties die de Agent bewaard." ;
+         rdfs:label "toegang" .
+
+
+###  https://data.archiefpunt.be/toegangsvoorwaarden
 :toegangsvoorwaarden rdf:type owl:DatatypeProperty ;
                      rdfs:domain :Beheerder ;
                      rdfs:range xsd:string ;
@@ -765,7 +767,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                      rdfs:label "toegangsvoorwaarden" .
 
 
-###  https://abv.libis.be/uitgever
+###  https://data.archiefpunt.be/uitgever
 :uitgever rdf:type owl:DatatypeProperty ;
           rdfs:domain :Publicatie ;
           rdfs:range xsd:string ;
@@ -773,7 +775,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
           rdfs:label "uitgever" .
 
 
-###  https://abv.libis.be/url
+###  https://data.archiefpunt.be/url
 :url rdf:type owl:DatatypeProperty ;
      rdfs:domain :Publicatie ;
      rdfs:range xsd:anyURI ;
@@ -781,7 +783,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
      rdfs:label "url" .
 
 
-###  https://abv.libis.be/verwerving
+###  https://data.archiefpunt.be/verwerving
 :verwerving rdf:type owl:DatatypeProperty ;
             rdfs:domain :Archief ;
             rdfs:range rdf:langString ;
@@ -789,15 +791,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
             rdfs:label "verwerving" .
 
 
-###  https://abv.libis.be/verwijderd_op
-:verwijderd_op rdf:type owl:DatatypeProperty ;
-               rdfs:domain :EntiteitMetadata ;
-               rdfs:range xsd:date ;
-               rdfs:comment "datum waarop record is verwijderd" ;
-               rdfs:label "verwijderd_op" .
-
-
-###  https://abv.libis.be/waardestelling
+###  https://data.archiefpunt.be/waardestelling
 :waardestelling rdf:type owl:DatatypeProperty ;
                 rdfs:domain :Waardering ;
                 rdfs:range rdf:langString ;
@@ -805,7 +799,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                 rdfs:label "waardestelling" .
 
 
-###  https://abv.libis.be/website
+###  https://data.archiefpunt.be/website
 :website rdf:type owl:DatatypeProperty ;
          rdfs:domain :Beheerder ;
          rdfs:range xsd:string ;
@@ -817,11 +811,15 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
 #    Classes
 #################################################################
 
+###  http://www.w3.org/2000/10/swap/time#DateTimeInterval
+<http://www.w3.org/2000/10/swap/time#DateTimeInterval> rdf:type owl:Class .
+
+
 ###  http://www.w3.org/2004/02/skos/core#Concept
 <http://www.w3.org/2004/02/skos/core#Concept> rdf:type owl:Class .
 
 
-###  https://abv.libis.be/Aangroei
+###  https://data.archiefpunt.be/Aangroei
 :Aangroei rdf:type owl:Class ;
           rdfs:subClassOf :Codetabel ,
                           [ rdf:type owl:Restriction ;
@@ -836,7 +834,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
           rdfs:label "Aangroei" .
 
 
-###  https://abv.libis.be/Adres
+###  https://data.archiefpunt.be/Adres
 :Adres rdf:type owl:Class ;
        rdfs:subClassOf :EntiteitBasis ,
                        [ rdf:type owl:Restriction ;
@@ -859,7 +857,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
        rdfs:label "Adres" .
 
 
-###  https://abv.libis.be/Agent
+###  https://data.archiefpunt.be/Agent
 :Agent rdf:type owl:Class ;
        rdfs:subClassOf :EntiteitBasis ,
                        [ rdf:type owl:Restriction ;
@@ -867,11 +865,11 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                          owl:minCardinality "0"^^xsd:nonNegativeInteger
                        ] ,
                        [ rdf:type owl:Restriction ;
-                         owl:onProperty :identificatie ;
-                         owl:minCardinality "1"^^xsd:nonNegativeInteger
+                         owl:onProperty :datering_systematisch ;
+                         owl:minCardinality "0"^^xsd:nonNegativeInteger
                        ] ,
                        [ rdf:type owl:Restriction ;
-                         owl:onProperty :naam ;
+                         owl:onProperty :identificatienummer ;
                          owl:minCardinality "1"^^xsd:nonNegativeInteger
                        ] ,
                        [ rdf:type owl:Restriction ;
@@ -899,8 +897,8 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                          owl:minCardinality "0"^^xsd:nonNegativeInteger
                        ] ,
                        [ rdf:type owl:Restriction ;
-                         owl:onProperty :datering_systematisch ;
-                         owl:minCardinality "0"^^xsd:nonNegativeInteger
+                         owl:onProperty :bronverwijzing_record ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger
                        ] ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :datering_text ;
@@ -911,8 +909,16 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                          owl:minCardinality "0"^^xsd:nonNegativeInteger
                        ] ,
                        [ rdf:type owl:Restriction ;
+                         owl:onProperty :naam ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
                          owl:onProperty :opmerking ;
                          owl:minCardinality "0"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :bronverwijzing_record ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
                        ] ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :datering_text ;
@@ -922,7 +928,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
        rdfs:label "Agent" .
 
 
-###  https://abv.libis.be/Archief
+###  https://data.archiefpunt.be/Archief
 :Archief rdf:type owl:Class ;
          rdfs:subClassOf :EntiteitBasis ,
                          [ rdf:type owl:Restriction ;
@@ -940,6 +946,10 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :beschrijvingsniveau ;
                            owl:minCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :datering_systematisch ;
+                           owl:minCardinality "0"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :identificatienummer ;
@@ -987,10 +997,6 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :taal ;
-                           owl:minCardinality "0"^^xsd:nonNegativeInteger
-                         ] ,
-                         [ rdf:type owl:Restriction ;
-                           owl:onProperty :toegang ;
                            owl:minCardinality "0"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
@@ -1054,10 +1060,6 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                            owl:minCardinality "1"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
-                           owl:onProperty :datering_systematisch ;
-                           owl:minCardinality "0"^^xsd:nonNegativeInteger
-                         ] ,
-                         [ rdf:type owl:Restriction ;
                            owl:onProperty :datering_text ;
                            owl:minCardinality "0"^^xsd:nonNegativeInteger
                          ] ,
@@ -1080,6 +1082,10 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :titel ;
                            owl:minCardinality "1"^^xsd:nonNegativeInteger
+                         ] ,
+                         [ rdf:type owl:Restriction ;
+                           owl:onProperty :toegang ;
+                           owl:minCardinality "0"^^xsd:nonNegativeInteger
                          ] ,
                          [ rdf:type owl:Restriction ;
                            owl:onProperty :verwerving ;
@@ -1109,7 +1115,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
          rdfs:label "Archief" .
 
 
-###  https://abv.libis.be/Associatie
+###  https://data.archiefpunt.be/Associatie
 :Associatie rdf:type owl:Class ;
             rdfs:subClassOf :EntiteitBasis ,
                             [ rdf:type owl:Restriction ;
@@ -1132,7 +1138,21 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
             rdfs:label "Associatie" .
 
 
-###  https://abv.libis.be/Beheerder
+###  https://data.archiefpunt.be/Audit
+:Audit rdf:type owl:Class ;
+       rdfs:subClassOf [ rdf:type owl:Restriction ;
+                         owl:onProperty :id ;
+                         owl:minCardinality "1"^^xsd:nonNegativeInteger
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :id ;
+                         owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                       ] ;
+       rdfs:comment "Dit is een construct met een verwijzing naar de audits in de audit database" ;
+       rdfs:label "Audit" .
+
+
+###  https://data.archiefpunt.be/Beheerder
 :Beheerder rdf:type owl:Class ;
            rdfs:subClassOf :EntiteitBasis ,
                            [ rdf:type owl:Restriction ;
@@ -1150,10 +1170,6 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :erkenning ;
                              owl:minCardinality "1"^^xsd:nonNegativeInteger
-                           ] ,
-                           [ rdf:type owl:Restriction ;
-                             owl:onProperty :toegang ;
-                             owl:minCardinality "0"^^xsd:nonNegativeInteger
                            ] ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :agent ;
@@ -1180,6 +1196,10 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                              owl:minCardinality "0"^^xsd:nonNegativeInteger
                            ] ,
                            [ rdf:type owl:Restriction ;
+                             owl:onProperty :toegang ;
+                             owl:minCardinality "0"^^xsd:nonNegativeInteger
+                           ] ,
+                           [ rdf:type owl:Restriction ;
                              owl:onProperty :toegangsvoorwaarden ;
                              owl:minCardinality "0"^^xsd:nonNegativeInteger
                            ] ,
@@ -1199,7 +1219,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "Beheerder" .
 
 
-###  https://abv.libis.be/Bereikbaarheid
+###  https://data.archiefpunt.be/Bereikbaarheid
 :Bereikbaarheid rdf:type owl:Class ;
                 rdfs:subClassOf :Codetabel ,
                                 [ rdf:type owl:Restriction ;
@@ -1214,7 +1234,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                 rdfs:label "Bereikbaarheid" .
 
 
-###  https://abv.libis.be/Beschrijvingsniveau
+###  https://data.archiefpunt.be/Beschrijvingsniveau
 :Beschrijvingsniveau rdf:type owl:Class ;
                      rdfs:subClassOf :Codetabel ,
                                      [ rdf:type owl:Restriction ;
@@ -1229,7 +1249,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                      rdfs:label "Beschrijvingsniveau" .
 
 
-###  https://abv.libis.be/BibliografieArchief
+###  https://data.archiefpunt.be/BibliografieArchief
 :BibliografieArchief rdf:type owl:Class ;
                      rdfs:subClassOf :Concept ,
                                      [ rdf:type owl:Restriction ;
@@ -1244,7 +1264,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                      rdfs:label "BibliografieArchief" .
 
 
-###  https://abv.libis.be/Bronbeschrijving
+###  https://data.archiefpunt.be/Bronbeschrijving
 :Bronbeschrijving rdf:type owl:Class ;
                   rdfs:subClassOf :Concept ,
                                   [ rdf:type owl:Restriction ;
@@ -1259,7 +1279,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                   rdfs:label "Bronbeschrijving" .
 
 
-###  https://abv.libis.be/Bronverwijzing
+###  https://data.archiefpunt.be/Bronverwijzing
 :Bronverwijzing rdf:type owl:Class ;
                 rdfs:subClassOf :EntiteitBasis ,
                                 [ rdf:type owl:Restriction ;
@@ -1274,7 +1294,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                 rdfs:label "Bronverwijzing" .
 
 
-###  https://abv.libis.be/Codetabel
+###  https://data.archiefpunt.be/Codetabel
 :Codetabel rdf:type owl:Class ;
            rdfs:subClassOf :Concept ,
                            [ rdf:type owl:Restriction ;
@@ -1289,7 +1309,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "Codetabel" .
 
 
-###  https://abv.libis.be/Concept
+###  https://data.archiefpunt.be/Concept
 :Concept rdf:type owl:Class ;
          rdfs:subClassOf :EntiteitBasis ,
                          [ rdf:type owl:Restriction ;
@@ -1310,7 +1330,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                          ] .
 
 
-###  https://abv.libis.be/Datering
+###  https://data.archiefpunt.be/Datering
 :Datering rdf:type owl:Class ;
           rdfs:subClassOf :EntiteitBasis ,
                           [ rdf:type owl:Restriction ;
@@ -1325,48 +1345,21 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
           rdfs:label "Datering" .
 
 
-###  https://abv.libis.be/EntiteitBasis
+###  https://data.archiefpunt.be/EntiteitBasis
 :EntiteitBasis rdf:type owl:Class ;
                rdfs:subClassOf [ rdf:type owl:Restriction ;
-                                 owl:onProperty :_meta ;
-                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
-                               ] ,
-                               [ rdf:type owl:Restriction ;
-                                 owl:onProperty :_meta ;
-                                 owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                               ] ,
-                               [ rdf:type owl:Restriction ;
                                  owl:onProperty :id ;
-                                 owl:minCardinality "0"^^xsd:nonNegativeInteger
+                                 owl:minCardinality "1"^^xsd:nonNegativeInteger
                                ] ,
                                [ rdf:type owl:Restriction ;
                                  owl:onProperty :id ;
                                  owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                ] ;
-               rdfs:comment "" ;
+               rdfs:comment "Basis entiteit waar alle andere van overerven" ;
                rdfs:label "EntiteitBasis" .
 
 
-###  https://abv.libis.be/EntiteitMetadata
-:EntiteitMetadata rdf:type owl:Class ;
-                  rdfs:subClassOf :EntiteitBasis ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :aangemaakt_op ;
-                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :aangepast_op ;
-                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                  ] ,
-                                  [ rdf:type owl:Restriction ;
-                                    owl:onProperty :verwijderd_op ;
-                                    owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                  ] ;
-                  rdfs:comment "" ;
-                  rdfs:label "EntiteitMetadata" .
-
-
-###  https://abv.libis.be/Erkenning
+###  https://data.archiefpunt.be/Erkenning
 :Erkenning rdf:type owl:Class ;
            rdfs:subClassOf :Concept ,
                            [ rdf:type owl:Restriction ;
@@ -1381,7 +1374,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "Erkenning" .
 
 
-###  https://abv.libis.be/Functie
+###  https://data.archiefpunt.be/Functie
 :Functie rdf:type owl:Class ;
          rdfs:subClassOf :Codetabel ,
                          [ rdf:type owl:Restriction ;
@@ -1396,7 +1389,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
          rdfs:label "Functie" .
 
 
-###  https://abv.libis.be/FunctieBeroepActiviteit
+###  https://data.archiefpunt.be/FunctieBeroepActiviteit
 :FunctieBeroepActiviteit rdf:type owl:Class ;
                          rdfs:subClassOf :Concept ,
                                          [ rdf:type owl:Restriction ;
@@ -1411,7 +1404,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                          rdfs:label "FunctieBeroepActiviteit" .
 
 
-###  https://abv.libis.be/Gebruiksgroep
+###  https://data.archiefpunt.be/Gebruiksgroep
 :Gebruiksgroep rdf:type owl:Class ;
                rdfs:subClassOf :Codetabel ,
                                [ rdf:type owl:Restriction ;
@@ -1426,7 +1419,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                rdfs:label "Gebruiksgroep" .
 
 
-###  https://abv.libis.be/Identificatienummer
+###  https://data.archiefpunt.be/Identificatienummer
 :Identificatienummer rdf:type owl:Class ;
                      rdfs:subClassOf :EntiteitBasis ,
                                      [ rdf:type owl:Restriction ;
@@ -1457,7 +1450,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                      rdfs:label "Identificatienummer" .
 
 
-###  https://abv.libis.be/JuridischeBeperking
+###  https://data.archiefpunt.be/JuridischeBeperking
 :JuridischeBeperking rdf:type owl:Class ;
                      rdfs:subClassOf :EntiteitBasis ,
                                      [ rdf:type owl:Restriction ;
@@ -1488,7 +1481,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                      rdfs:label "JuridischeBeperking" .
 
 
-###  https://abv.libis.be/Materiaalsoort
+###  https://data.archiefpunt.be/Materiaalsoort
 :Materiaalsoort rdf:type owl:Class ;
                 rdfs:subClassOf :Codetabel ,
                                 [ rdf:type owl:Restriction ;
@@ -1503,7 +1496,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                 rdfs:label "Materiaalsoort" .
 
 
-###  https://abv.libis.be/Naam
+###  https://data.archiefpunt.be/Naam
 :Naam rdf:type owl:Class ;
       rdfs:subClassOf :EntiteitBasis ,
                       [ rdf:type owl:Restriction ;
@@ -1526,7 +1519,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
       rdfs:label "Naam" .
 
 
-###  https://abv.libis.be/Omvang
+###  https://data.archiefpunt.be/Omvang
 :Omvang rdf:type owl:Class ;
         rdfs:subClassOf :EntiteitBasis ,
                         [ rdf:type owl:Restriction ;
@@ -1545,7 +1538,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
         rdfs:label "Omvang" .
 
 
-###  https://abv.libis.be/Onderwerp
+###  https://data.archiefpunt.be/Onderwerp
 :Onderwerp rdf:type owl:Class ;
            rdfs:subClassOf :Codetabel ,
                            [ rdf:type owl:Restriction ;
@@ -1560,9 +1553,9 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "Onderwerp" .
 
 
-###  https://abv.libis.be/Ordening
+###  https://data.archiefpunt.be/Ordening
 :Ordening rdf:type owl:Class ;
-          rdfs:subClassOf :Codetabel ,
+          rdfs:subClassOf :EntiteitBasis ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :trefwoord ;
                             owl:minCardinality "1"^^xsd:nonNegativeInteger
@@ -1583,7 +1576,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
           rdfs:label "Ordening" .
 
 
-###  https://abv.libis.be/Ordeningsstatus
+###  https://data.archiefpunt.be/Ordeningsstatus
 :Ordeningsstatus rdf:type owl:Class ;
                  rdfs:subClassOf :Codetabel ,
                                  [ rdf:type owl:Restriction ;
@@ -1598,7 +1591,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                  rdfs:label "Ordeningsstatus" .
 
 
-###  https://abv.libis.be/Periode
+###  https://data.archiefpunt.be/Periode
 :Periode rdf:type owl:Class ;
          rdfs:subClassOf :Codetabel ,
                          [ rdf:type owl:Restriction ;
@@ -1613,7 +1606,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
          rdfs:label "Periode" .
 
 
-###  https://abv.libis.be/Plaats
+###  https://data.archiefpunt.be/Plaats
 :Plaats rdf:type owl:Class ;
         rdfs:subClassOf :EntiteitBasis ,
                         [ rdf:type owl:Restriction ;
@@ -1628,7 +1621,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
         rdfs:label "Plaats" .
 
 
-###  https://abv.libis.be/Publicatie
+###  https://data.archiefpunt.be/Publicatie
 :Publicatie rdf:type owl:Class ;
             rdfs:subClassOf :EntiteitBasis ,
                             [ rdf:type owl:Restriction ;
@@ -1695,7 +1688,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
             rdfs:label "Publicatie" .
 
 
-###  https://abv.libis.be/Raadplegingsstatus
+###  https://data.archiefpunt.be/Raadplegingsstatus
 :Raadplegingsstatus rdf:type owl:Class ;
                     rdfs:subClassOf :Codetabel ,
                                     [ rdf:type owl:Restriction ;
@@ -1710,7 +1703,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                     rdfs:label "Raadplegingsstatus" .
 
 
-###  https://abv.libis.be/Raadplegingsvoorwaarde
+###  https://data.archiefpunt.be/Raadplegingsvoorwaarde
 :Raadplegingsvoorwaarde rdf:type owl:Class ;
                         rdfs:subClassOf :EntiteitBasis ,
                                         [ rdf:type owl:Restriction ;
@@ -1741,7 +1734,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                         rdfs:label "Raadplegingsvoorwaarde" .
 
 
-###  https://abv.libis.be/Rechtenstatus
+###  https://data.archiefpunt.be/Rechtenstatus
 :Rechtenstatus rdf:type owl:Class ;
                rdfs:subClassOf :Codetabel ,
                                [ rdf:type owl:Restriction ;
@@ -1756,7 +1749,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                rdfs:label "Rechtenstatus" .
 
 
-###  https://abv.libis.be/Rol
+###  https://data.archiefpunt.be/Rol
 :Rol rdf:type owl:Class ;
      rdfs:subClassOf :Concept ,
                      [ rdf:type owl:Restriction ;
@@ -1771,7 +1764,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
      rdfs:label "Rol" .
 
 
-###  https://abv.libis.be/RolBeheerder
+###  https://data.archiefpunt.be/RolBeheerder
 :RolBeheerder rdf:type owl:Class ;
               rdfs:subClassOf :Codetabel ,
                               [ rdf:type owl:Restriction ;
@@ -1786,7 +1779,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
               rdfs:label "RolBeheerder" .
 
 
-###  https://abv.libis.be/RolSamensteller
+###  https://data.archiefpunt.be/RolSamensteller
 :RolSamensteller rdf:type owl:Class ;
                  rdfs:subClassOf :Codetabel ,
                                  [ rdf:type owl:Restriction ;
@@ -1801,7 +1794,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                  rdfs:label "RolSamensteller" .
 
 
-###  https://abv.libis.be/Samensteller
+###  https://data.archiefpunt.be/Samensteller
 :Samensteller rdf:type owl:Class ;
               rdfs:subClassOf :EntiteitBasis ,
                               [ rdf:type owl:Restriction ;
@@ -1820,7 +1813,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
               rdfs:label "Samensteller" .
 
 
-###  https://abv.libis.be/Soort
+###  https://data.archiefpunt.be/Soort
 :Soort rdf:type owl:Class ;
        rdfs:subClassOf :Concept ,
                        [ rdf:type owl:Restriction ;
@@ -1835,7 +1828,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
        rdfs:label "Soort" .
 
 
-###  https://abv.libis.be/Taal
+###  https://data.archiefpunt.be/Taal
 :Taal rdf:type owl:Class ;
       rdfs:subClassOf :Codetabel ,
                       [ rdf:type owl:Restriction ;
@@ -1850,7 +1843,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
       rdfs:label "Taal" .
 
 
-###  https://abv.libis.be/Term
+###  https://data.archiefpunt.be/Term
 :Term rdf:type owl:Class ;
       rdfs:subClassOf :EntiteitBasis ,
                       [ rdf:type owl:Restriction ;
@@ -1865,7 +1858,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
       rdfs:label "Term" .
 
 
-###  https://abv.libis.be/Toegang
+###  https://data.archiefpunt.be/Toegang
 :Toegang rdf:type owl:Class ;
          rdfs:subClassOf :EntiteitBasis ,
                          [ rdf:type owl:Restriction ;
@@ -1880,7 +1873,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
          rdfs:label "Toegang" .
 
 
-###  https://abv.libis.be/TypeAgent
+###  https://data.archiefpunt.be/TypeAgent
 :TypeAgent rdf:type owl:Class ;
            rdfs:subClassOf :Codetabel ,
                            [ rdf:type owl:Restriction ;
@@ -1895,7 +1888,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
            rdfs:label "TypeAgent" .
 
 
-###  https://abv.libis.be/TypeConcept
+###  https://data.archiefpunt.be/TypeConcept
 :TypeConcept rdf:type owl:Class ;
              rdfs:subClassOf :Codetabel ,
                              [ rdf:type owl:Restriction ;
@@ -1910,7 +1903,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
              rdfs:label "TypeConcept" .
 
 
-###  https://abv.libis.be/TypeIdentificatienummer
+###  https://data.archiefpunt.be/TypeIdentificatienummer
 :TypeIdentificatienummer rdf:type owl:Class ;
                          rdfs:subClassOf :Codetabel ,
                                          [ rdf:type owl:Restriction ;
@@ -1925,7 +1918,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                          rdfs:label "TypeIdentificatienummer" .
 
 
-###  https://abv.libis.be/TypeNaam
+###  https://data.archiefpunt.be/TypeNaam
 :TypeNaam rdf:type owl:Class ;
           rdfs:subClassOf :Codetabel ,
                           [ rdf:type owl:Restriction ;
@@ -1940,7 +1933,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
           rdfs:label "TypeNaam" .
 
 
-###  https://abv.libis.be/TypeVergelijking
+###  https://data.archiefpunt.be/TypeVergelijking
 :TypeVergelijking rdf:type owl:Class ;
                   rdfs:subClassOf :Codetabel ,
                                   [ rdf:type owl:Restriction ;
@@ -1955,7 +1948,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                   rdfs:label "TypeVergelijking" .
 
 
-###  https://abv.libis.be/TypeWaarde
+###  https://data.archiefpunt.be/TypeWaarde
 :TypeWaarde rdf:type owl:Class ;
             rdfs:subClassOf :Codetabel ,
                             [ rdf:type owl:Restriction ;
@@ -1970,7 +1963,67 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
             rdfs:label "TypeWaarde" .
 
 
-###  https://abv.libis.be/Vergelijking
+###  https://data.archiefpunt.be/UiArchiefvormerLijst
+:UiArchiefvormerLijst rdf:type owl:Class ;
+                      rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                        owl:onProperty :az ;
+                                        owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :id ;
+                                        owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :naam ;
+                                        owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :az ;
+                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :id ;
+                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :naam ;
+                                        owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                      ] ;
+                      rdfs:comment "Lijst van alle archiefvormers" ;
+                      rdfs:label "UiArchiefvormerLijst" .
+
+
+###  https://data.archiefpunt.be/UiBewaarplaatsLijst
+:UiBewaarplaatsLijst rdf:type owl:Class ;
+                     rdfs:subClassOf [ rdf:type owl:Restriction ;
+                                       owl:onProperty :az ;
+                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :id ;
+                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :naam ;
+                                       owl:minCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :az ;
+                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :id ;
+                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :naam ;
+                                       owl:maxCardinality "1"^^xsd:nonNegativeInteger
+                                     ] ;
+                     rdfs:comment "Lijst van alle bewaarplaatsen" ;
+                     rdfs:label "UiBewaarplaatsLijst" .
+
+
+###  https://data.archiefpunt.be/Vergelijking
 :Vergelijking rdf:type owl:Class ;
               rdfs:subClassOf :EntiteitBasis ,
                               [ rdf:type owl:Restriction ;
@@ -1993,7 +2046,7 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
               rdfs:label "Vergelijking" .
 
 
-###  https://abv.libis.be/Waarde
+###  https://data.archiefpunt.be/Waarde
 :Waarde rdf:type owl:Class ;
         rdfs:subClassOf :EntiteitBasis ,
                         [ rdf:type owl:Restriction ;
@@ -2024,13 +2077,9 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
         rdfs:label "Waarde" .
 
 
-###  https://abv.libis.be/Waardering
+###  https://data.archiefpunt.be/Waardering
 :Waardering rdf:type owl:Class ;
             rdfs:subClassOf :EntiteitBasis ,
-                            [ rdf:type owl:Restriction ;
-                              owl:onProperty :bron_waardering ;
-                              owl:minCardinality "0"^^xsd:nonNegativeInteger
-                            ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :vergelijking ;
                               owl:minCardinality "0"^^xsd:nonNegativeInteger
@@ -2041,6 +2090,10 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                             ] ,
                             [ rdf:type owl:Restriction ;
                               owl:onProperty :bijdragers ;
+                              owl:minCardinality "0"^^xsd:nonNegativeInteger
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :bron_waardering ;
                               owl:minCardinality "0"^^xsd:nonNegativeInteger
                             ] ,
                             [ rdf:type owl:Restriction ;
@@ -2076,11 +2129,11 @@ Andere IDs enkel toevoegen als ze al buiten ABV bestaan.""" ;
                                               owl:sameAs :Concept .
 
 
-###  https://abv.libis.be/Concept
+###  https://data.archiefpunt.be/Concept
 :Concept rdf:type owl:NamedIndividual .
 
 
-###  https://abv.libis.be/Concept
+###  https://data.archiefpunt.be/Concept
 :Concept rdf:type owl:NamedIndividual .
 
 
