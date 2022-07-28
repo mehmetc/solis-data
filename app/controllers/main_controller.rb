@@ -196,6 +196,9 @@ class MainController < GenericController
       result = for_resource.find(data)
       return result.to_jsonapi
     end
+
+    pp @media_type
+
     result.to_jsonapi
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
