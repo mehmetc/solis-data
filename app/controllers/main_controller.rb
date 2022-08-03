@@ -106,7 +106,7 @@ class MainController < GenericController
     result.to_jsonapi
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
-    halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
+    halt 404, api_error('404', request.url, 'Not found', "Niet gevonden in  #{params[:entity]} #{data.to_json}")
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
