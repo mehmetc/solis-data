@@ -68,51 +68,31 @@ module Sinatra
       OpenStruct.new(query_user: id, other_data: other_data, language: params[:language] ||solis_conf[:language] || 'nl')
     end
 
-    def logic_ui_lijst(key)
-      result = {}
-
-      result = settings.cache[key] if settings.cache.key?(key)
-
-      if result.nil? || result.empty? || (params.key?(:from_cache) && params[:from_cache].eql?('0'))
-        f = Stopwords::Snowball::Filter.new "nl"
-        filename = "./config/constructs/#{key}.sparql"
-        return result unless File.exist?(filename)
-
-        q = File.read(filename)
-        c = Solis::Store::Sparql::Client.new(solis_conf[:sparql_endpoint], solis_conf[:graph_name])
-        r = c.query(q)
-        t = r.query('select * where{?s ?p ?o}')
-
-        result = {}
-        u= {}
-        t.each do |s|
-          u[s.s.value] = {} unless u.key?(s.s.value)
-          u[s.s.value][s.p.value.split('/').last] = s.o.value
-        end
-
-        u.each do |k,v|
-          n = v['naam']
-          next if n.nil? || n.empty?
-          az = f.filter(n.downcase.gsub(/^\W*/,' ').strip.gsub(/[^\w|\s|[^\x00-\x7F]+\ *(?:[^\x00-\x7F]| )*]/,'').split).join(' ')[0] rescue '0'
-          az = '0' if az.nil?
-
-          naam = result[az] || []
-          naam << n
-          naam.uniq!
-          naam.compact!
-          result[az] = naam
-        end
-
-        result = result.sort.to_h
-        settings.cache.store(key, result, expires: 86400)
-      end
-
-      result
+    def dump_by_content_type(resource, content_type)
+      #raise "Content-Type: #{content_type} not found use one of\n #{RDF::Format.content_types.keys.join(', ')}" unless RDF::Format.content_types.key?(content_type)
+      content_type_format = RDF::Format.for(:content_type   => content_type).to_sym
+      #raise "No writer found for #{content_type}" if  RDF::Writer.for(content_type_format).nil?
+      dump(resource, content_type_format)
     rescue StandardError => e
-      puts e.message
-      {}
+      dump(resource, :jsonapi)
     end
 
+    def dump(resource, content_type_format)
+      if RDF::Format.writer_symbols.include?(content_type_format)
+        content_type RDF::Format.for(content_type_format).content_type.first
+        resource.data.dump(content_type_format)
+      else
+        content_type :json
+        resource.to_jsonapi
+      end
+    rescue StandardError => e
+      content_type :json
+      resource.to_jsonapi
+    end
+
+    def formats
+      (['application/vnd.api+json', 'application/json'] | RDF::Format.content_types.keys)
+    end
   end
   helpers MainHelper
 end

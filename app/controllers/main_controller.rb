@@ -9,6 +9,10 @@ class MainController < GenericController
   rescue StandardError => e
     halt 500, api_error('500', request.url, 'Unknown Error', e.message, e)
   end
+  get '/_formats' do
+    content_type :json
+    formats.to_json
+  end
 
   get '/_vandal/?' do
     #File.read('public/vandal/index.html')
@@ -194,12 +198,8 @@ class MainController < GenericController
       data = { id: id }
       data = data.merge(params)
       result = for_resource.find(data)
-      return result.to_jsonapi
+      dump_by_content_type(result, @media_type)
     end
-
-    pp @media_type
-
-    result.to_jsonapi
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)

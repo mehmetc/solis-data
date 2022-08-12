@@ -44,14 +44,12 @@ class GenericController < Sinatra::Base
     media_types = HTTP::Accept::MediaTypes.parse(accept_header).map { |m| m.mime_type.eql?('*/*') ? 'application/json' : m.mime_type } || ['application/json']
     @media_type = media_types.first
 
+    if @media_type.eql?('text/html')
+      @media_type = 'application/json'
+    end
+
     content_type @media_type
   end
-
-  get '/_formats' do
-    content_type :json
-    RDF::Format.content_types.keys.to_json
-  end
-
 
   get '/' do
     halt '404', 'To be implemented'
