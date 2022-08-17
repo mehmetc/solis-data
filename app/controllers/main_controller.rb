@@ -85,6 +85,9 @@ class MainController < GenericController
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+  rescue Solis::Error::InvalidDatatypeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
@@ -114,6 +117,9 @@ class MainController < GenericController
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+  rescue Solis::Error::InvalidDatatypeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
   rescue StandardError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
@@ -129,6 +135,9 @@ class MainController < GenericController
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+  rescue Solis::Error::InvalidDatatypeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
   rescue StandardError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
@@ -156,6 +165,9 @@ class MainController < GenericController
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+  rescue Solis::Error::InvalidDatatypeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
@@ -180,6 +192,9 @@ class MainController < GenericController
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+  rescue Solis::Error::InvalidDatatypeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
@@ -203,6 +218,9 @@ class MainController < GenericController
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+  rescue Solis::Error::InvalidDatatypeError => e
+    content_type :json
+    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
