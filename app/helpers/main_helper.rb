@@ -63,7 +63,7 @@ module Sinatra
         id = data.key?('id') ? data['id'] : '0'
         group = data.key?('group') ? data['group'] : '0'
 
-        other_data = data.select{|k,v| !k.eql?('id') }
+        other_data = data.select{|k,v| !['id','group'].include?(k) }
       elsif !decoded_jwt.empty?
         data = decoded_jwt
         id = data['user'] || 'unknown'
