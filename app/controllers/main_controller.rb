@@ -103,7 +103,7 @@ class MainController < GenericController
     data = JSON.parse(request.body.read)
     data = data['attributes'] if data.include?('attributes')
 
-    context = OpenStruct.new(query_user: params.key?(:gebruiker) ? params[:gebruiker] : 'unknown')
+    context = load_context
     Graphiti::with_context(context) do
       model = for_model.new(data)
       model.save(params.key?(:validate_dependencies) ? !params[:validate_dependencies].eql?('false') : true)
@@ -179,9 +179,8 @@ class MainController < GenericController
 
   delete '/:entity/:id' do
     content_type :json
-    context = OpenStruct.new(query_user: params.key?(:gebruiker) ? params[:gebruiker] : 'unknown')
+    context = load_context
     Graphiti::with_context(context) do
-
       resource = for_resource.find({ id: params['id'] })
       raise Graphiti::Errors::RecordNotFound unless resource
 

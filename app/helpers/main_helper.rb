@@ -1,4 +1,5 @@
 require 'json'
+require 'jwt'
 require 'stopwords'
 require 'solis/store/sparql/client'
 
@@ -60,12 +61,42 @@ module Sinatra
         halt 500, api_error('400', request.url, 'Error parsing header X-Frontend', 'Header must include key/value id=1234567') unless data.key?('id')
 
         id = data.key?('id') ? data['id'] : '0'
+        group = data.key?('group') ? data['group'] : '0'
+
         other_data = data.select{|k,v| !k.eql?('id') }
+      elsif !decoded_jwt.empty?
+        data = decoded_jwt
+        id = data['user'] || 'unknown'
+        group = data['group'] || 'unknown'
       else
         logger.warn("No X-Frontend header found for : #{request.url}")
       end
 
-      OpenStruct.new(query_user: id, other_data: other_data, language: params[:language] ||solis_conf[:language] || 'nl')
+      OpenStruct.new(query_user: id, query_group: group, other_data: other_data, language: params[:language] || solis_conf[:language] || 'nl')
+    end
+
+    def decoded_jwt()
+      path = request.env['HTTP_X_FORWARDED_URI'] || ''
+      parsed_path = CGI.parse(URI(path).query || '')
+
+      token = if parsed_path.key?('apikey')
+                  parsed_path['apikey'].first
+              elsif params.key?('apikey')
+                params['apikey']
+              else
+                request.env['HTTP_AUTHORIZATION']&.gsub(/^bearer /i, '') || nil
+              end
+
+      #token = parsed_path.key?('apikey') ? parsed_path['apikey'].first : request.env['HTTP_AUTHORIZATION']&.gsub(/^bearer /i, '') || nil
+
+      if token && !token.blank? && !token.empty?
+        JWT.decode(token, Solis::ConfigFile[:secret], true, {algorithm: 'HS512'}).first
+      else
+        {}
+      end
+    rescue StandardError => e
+      LOGGER.warn('No JWT token defined')
+      {}
     end
 
     def dump_by_content_type(resource, content_type)
