@@ -58,7 +58,8 @@ module Sinatra
         data = request.get_header('HTTP_X_FRONTEND')
         halt 500, api_error('400', request.url, 'Error parsing header X-Frontend', 'Error parsing header X-Frontend') if data.nil? || data.empty?
         data = data.split(';').map{|m| m.split('=')}
-        data |= [['dummy', '']] if data.length.modulo(2) != 0
+        data = data.map{|m| m.length == 1 ? m << '' : m}
+
         data = data&.to_h
 
         halt 500, api_error('400', request.url, 'Error parsing header X-Frontend', 'Header must include key/value id=1234567') unless data.key?('id')
