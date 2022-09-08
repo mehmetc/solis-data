@@ -76,7 +76,9 @@ module Sinatra
         logger.warn("No X-Frontend header found for : #{request.url}")
       end
 
-      OpenStruct.new(query_user: id, query_group: group, other_data: other_data, language: params[:language] || solis_conf[:language] || 'nl')
+      from_cache = params['from_cache'] || '1'
+
+      OpenStruct.new(from_cache: from_cache, query_user: id, query_group: group, other_data: other_data, language: params[:language] || solis_conf[:language] || 'nl')
     end
 
     def decoded_jwt()

@@ -40,6 +40,7 @@ class MainController < GenericController
   end
 
   post '/_sparql' do
+    timing_start = Time.now
     content_type env['HTTP_ACCEPT'] || 'text/turtle'
     result = ''
     data = request.body.read
@@ -65,16 +66,22 @@ class MainController < GenericController
     halt 500, api_error('500', request.url, 'SparQL error', e.message, e)
   rescue StandardError => e
     halt 500, api_error('500', request.url, 'SparQL error', e.message, e)
+  ensure
+    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
   end
 
   get '/schema.json' do
+    timing_start = Time.now
     content_type :json
     Graphiti::Schema.generate.to_json
   rescue StandardError => e
     halt 500, api_error('500', request.url, 'Unknown Error', e.message, e)
+  ensure
+    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
   end
 
   get '/:entity' do
+    timing_start = Time.now
     content_type :json
     #recursive_compact(JSON.parse(for_resource.all(params.merge({stats: {total: :count}})).to_jsonapi)).to_json
     #
@@ -95,15 +102,19 @@ class MainController < GenericController
     puts e.backtrace.join("\n")
     content_type :json
     halt 500, api_error(response.status, request.url, "Error in '#{e.name}'", e.cause, e)
+  ensure
+    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
   end
 
   post '/:entity' do
+    timing_start = Time.now
     content_type :json
     result = nil
     data = JSON.parse(request.body.read)
     data = data['attributes'] if data.include?('attributes')
 
     context = load_context
+    context.from_cache=0
     Graphiti::with_context(context) do
       model = for_model.new(data)
       model.save(params.key?(:validate_dependencies) ? !params[:validate_dependencies].eql?('false') : true)
@@ -123,9 +134,12 @@ class MainController < GenericController
   rescue StandardError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
+  ensure
+    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
   end
 
   get '/:entity/model' do
+    timing_start = Time.now
     content_type :json
     if params.key?(:template) && params[:template]
       for_model.model_template.to_json
@@ -141,12 +155,16 @@ class MainController < GenericController
   rescue StandardError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
+  ensure
+    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
   end
 
   put '/:entity/:id' do
+    timing_start = Time.now
     content_type :json
     result = {}
     context = load_context
+    context.from_cache=0
     Graphiti::with_context(context) do
       resource = for_resource.find({ id: params['id'] })
       raise Graphiti::Errors::RecordNotFound unless resource
@@ -175,11 +193,15 @@ class MainController < GenericController
     content_type :json
     puts e.backtrace.join("\n")
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
+  ensure
+    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
   end
 
   delete '/:entity/:id' do
+    timing_start = Time.now
     content_type :json
     context = load_context
+    context.from_cache=0
     Graphiti::with_context(context) do
       resource = for_resource.find({ id: params['id'] })
       raise Graphiti::Errors::RecordNotFound unless resource
@@ -201,9 +223,12 @@ class MainController < GenericController
     content_type :json
     puts e.backtrace.join("\n")
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
+  ensure
+    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
   end
 
   get '/:entity/:id' do
+    timing_start = Time.now
     result = {}
     content_type :json
     id = params.delete(:id)
@@ -226,5 +251,7 @@ class MainController < GenericController
   rescue StandardError => e
     content_type :json
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.message, e)
+  ensure
+    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
   end
 end
