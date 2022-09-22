@@ -9,10 +9,10 @@
      xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
     <owl:Ontology rdf:about="https://data.archiefpunt.be/">
         <dc11:creator>Archiefpunt, Meemo, KADOC, LIBIS</dc11:creator>
-        <dc11:date>2022-08-26 11:45:34 +0200</dc11:date>
+        <dc11:date>2022-09-20 15:05:50 +0200</dc11:date>
         <dc11:description>Archiefbank ontology</dc11:description>
         <dc11:title>Archiefbank ontology</dc11:title>
-        <owl:versionInfo>1.0.1</owl:versionInfo>
+        <owl:versionInfo>1.0.2</owl:versionInfo>
     </owl:Ontology>
     
 
@@ -496,7 +496,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. </
     <owl:ObjectProperty rdf:about="https://data.archiefpunt.be/selectie">
         <rdfs:domain rdf:resource="https://data.archiefpunt.be/Archief"/>
         <rdfs:range rdf:resource="https://data.archiefpunt.be/Waardering"/>
-        <rdfs:comment>Verklaring over de erfgoedwaarde van het archiefbestand en de vergelijking met andere archiefbestanden.</rdfs:comment>
+        <rdfs:comment>selectie</rdfs:comment>
         <rdfs:label>selectie</rdfs:label>
     </owl:ObjectProperty>
     
@@ -508,9 +508,8 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. </
     <owl:ObjectProperty rdf:about="https://data.archiefpunt.be/taal">
         <rdfs:domain rdf:resource="https://data.archiefpunt.be/Agent"/>
         <rdfs:domain rdf:resource="https://data.archiefpunt.be/Archief"/>
-        <rdfs:domain rdf:resource="https://data.archiefpunt.be/Raadplegingsvoorwaarde"/>
         <rdfs:range rdf:resource="https://data.archiefpunt.be/Taal"/>
-        <rdfs:comment></rdfs:comment>
+        <rdfs:comment>trefwoord dat aangeeft welke taal gebruikt wordt in het archief</rdfs:comment>
         <rdfs:label>taal</rdfs:label>
     </owl:ObjectProperty>
     
@@ -663,7 +662,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. </
     <owl:DatatypeProperty rdf:about="https://data.archiefpunt.be/bibliografie_agent">
         <rdfs:domain rdf:resource="https://data.archiefpunt.be/Agent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Bronnen over de agent.</rdfs:comment>
+        <rdfs:comment>Bronnen gebruikt om agentbeschrijving op te stellen.</rdfs:comment>
         <rdfs:label>bibliografie_agent</rdfs:label>
     </owl:DatatypeProperty>
     
@@ -735,7 +734,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. </
     <owl:DatatypeProperty rdf:about="https://data.archiefpunt.be/bronnen_agent">
         <rdfs:domain rdf:resource="https://data.archiefpunt.be/Agent"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
-        <rdfs:comment>Bronnen gebruikt om agentbeschrijving op te stellen.</rdfs:comment>
+        <rdfs:comment>Bronnen die gebruik maakten van de agent</rdfs:comment>
         <rdfs:label>bronnen_agent</rdfs:label>
     </owl:DatatypeProperty>
     
@@ -1201,7 +1200,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. </
 
     <owl:DatatypeProperty rdf:about="https://data.archiefpunt.be/tekst">
         <rdfs:domain rdf:resource="https://data.archiefpunt.be/Raadplegingsvoorwaarde"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:range rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"/>
         <rdfs:comment></rdfs:comment>
         <rdfs:label>tekst</rdfs:label>
     </owl:DatatypeProperty>
@@ -2728,19 +2727,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. </
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="https://data.archiefpunt.be/taal"/>
-                <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="https://data.archiefpunt.be/raadplegingsstatus"/>
-                <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="https://data.archiefpunt.be/taal"/>
                 <owl:maxCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxCardinality>
             </owl:Restriction>
         </rdfs:subClassOf>

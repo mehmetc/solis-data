@@ -8,10 +8,10 @@
 
 <https://data.archiefpunt.be/> rdf:type owl:Ontology ;
                                 <dc11:creator> "Archiefpunt, Meemo, KADOC, LIBIS" ;
-                                <dc11:date> "2022-08-26 11:45:34 +0200" ;
+                                <dc11:date> "2022-09-20 15:05:50 +0200" ;
                                 <dc11:description> "Archiefbank ontology" ;
                                 <dc11:title> "Archiefbank ontology" ;
-                                owl:versionInfo "1.0.1" .
+                                owl:versionInfo "1.0.2" .
 
 #################################################################
 #    Annotation properties
@@ -318,17 +318,16 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
 :selectie rdf:type owl:ObjectProperty ;
           rdfs:domain :Archief ;
           rdfs:range :Waardering ;
-          rdfs:comment "Verklaring over de erfgoedwaarde van het archiefbestand en de vergelijking met andere archiefbestanden." ;
+          rdfs:comment "selectie" ;
           rdfs:label "selectie" .
 
 
 ###  https://data.archiefpunt.be/taal
 :taal rdf:type owl:ObjectProperty ;
       rdfs:domain :Agent ,
-                  :Archief ,
-                  :Raadplegingsvoorwaarde ;
+                  :Archief ;
       rdfs:range :Taal ;
-      rdfs:comment "" ;
+      rdfs:comment "trefwoord dat aangeeft welke taal gebruikt wordt in het archief" ;
       rdfs:label "taal" .
 
 
@@ -429,7 +428,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
 :bibliografie_agent rdf:type owl:DatatypeProperty ;
                     rdfs:domain :Agent ;
                     rdfs:range xsd:string ;
-                    rdfs:comment "Bronnen over de agent." ;
+                    rdfs:comment "Bronnen gebruikt om agentbeschrijving op te stellen." ;
                     rdfs:label "bibliografie_agent" .
 
 
@@ -477,7 +476,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
 :bronnen_agent rdf:type owl:DatatypeProperty ;
                rdfs:domain :Agent ;
                rdfs:range xsd:string ;
-               rdfs:comment "Bronnen gebruikt om agentbeschrijving op te stellen." ;
+               rdfs:comment "Bronnen die gebruik maakten van de agent" ;
                rdfs:label "bronnen_agent" .
 
 
@@ -799,7 +798,7 @@ Nu expliciet gemaakt als een Agent, die verbonden is aan een bepaalde Plaats. ""
 ###  https://data.archiefpunt.be/tekst
 :tekst rdf:type owl:DatatypeProperty ;
        rdfs:domain :Raadplegingsvoorwaarde ;
-       rdfs:range xsd:string ;
+       rdfs:range rdf:langString ;
        rdfs:comment "" ;
        rdfs:label "tekst" .
 
@@ -1800,15 +1799,7 @@ rdf:JSON rdf:type owl:Class .
                                           owl:minCardinality "1"^^xsd:nonNegativeInteger
                                         ] ,
                                         [ rdf:type owl:Restriction ;
-                                          owl:onProperty :taal ;
-                                          owl:minCardinality "1"^^xsd:nonNegativeInteger
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
                                           owl:onProperty :raadplegingsstatus ;
-                                          owl:maxCardinality "1"^^xsd:nonNegativeInteger
-                                        ] ,
-                                        [ rdf:type owl:Restriction ;
-                                          owl:onProperty :taal ;
                                           owl:maxCardinality "1"^^xsd:nonNegativeInteger
                                         ] ,
                                         [ rdf:type owl:Restriction ;

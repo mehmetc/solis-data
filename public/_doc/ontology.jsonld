@@ -751,22 +751,22 @@
 }, {
   "@id" : "_:genid167",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/taal"
-  } ]
-}, {
-  "@id" : "_:genid168",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://data.archiefpunt.be/raadplegingsstatus"
+  } ]
+}, {
+  "@id" : "_:genid168",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://data.archiefpunt.be/tekst"
   } ]
 }, {
   "@id" : "_:genid169",
@@ -776,7 +776,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/taal"
+    "@id" : "https://data.archiefpunt.be/tekst"
   } ]
 }, {
   "@id" : "_:genid17",
@@ -796,7 +796,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/tekst"
+    "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
   "@id" : "_:genid171",
@@ -806,7 +806,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/tekst"
+    "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
   "@id" : "_:genid172",
@@ -876,17 +876,17 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/id"
+    "@id" : "https://data.archiefpunt.be/agent"
   } ]
 }, {
   "@id" : "_:genid179",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/id"
+    "@id" : "https://data.archiefpunt.be/functie_beroep_activiteit"
   } ]
 }, {
   "@id" : "_:genid18",
@@ -901,7 +901,7 @@
 }, {
   "@id" : "_:genid180",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
@@ -913,10 +913,10 @@
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
+    "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/functie_beroep_activiteit"
+    "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
   "@id" : "_:genid182",
@@ -926,7 +926,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/agent"
+    "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
   "@id" : "_:genid183",
@@ -973,10 +973,10 @@
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/id"
+    "@id" : "https://data.archiefpunt.be/json_dt"
   } ]
 }, {
   "@id" : "_:genid188",
@@ -986,7 +986,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/id"
+    "@id" : "https://data.archiefpunt.be/json_dt"
   } ]
 }, {
   "@id" : "_:genid189",
@@ -996,7 +996,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/json_dt"
+    "@id" : "https://data.archiefpunt.be/boolean_dt"
   } ]
 }, {
   "@id" : "_:genid19",
@@ -1011,12 +1011,12 @@
 }, {
   "@id" : "_:genid190",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
+    "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/json_dt"
+    "@id" : "https://data.archiefpunt.be/date_dt"
   } ]
 }, {
   "@id" : "_:genid191",
@@ -1026,7 +1026,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/boolean_dt"
+    "@id" : "https://data.archiefpunt.be/datetime_dt"
   } ]
 }, {
   "@id" : "_:genid192",
@@ -1036,7 +1036,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/date_dt"
+    "@id" : "https://data.archiefpunt.be/double_dt"
   } ]
 }, {
   "@id" : "_:genid193",
@@ -1046,7 +1046,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/datetime_dt"
+    "@id" : "https://data.archiefpunt.be/duration_dt"
   } ]
 }, {
   "@id" : "_:genid194",
@@ -1056,30 +1056,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/double_dt"
-  } ]
-}, {
-  "@id" : "_:genid195",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/duration_dt"
-  } ]
-}, {
-  "@id" : "_:genid196",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://data.archiefpunt.be/float_dt"
   } ]
 }, {
-  "@id" : "_:genid197",
+  "@id" : "_:genid195",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1089,7 +1069,7 @@
     "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
-  "@id" : "_:genid198",
+  "@id" : "_:genid196",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1099,7 +1079,7 @@
     "@id" : "https://data.archiefpunt.be/integer_dt"
   } ]
 }, {
-  "@id" : "_:genid199",
+  "@id" : "_:genid197",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1107,6 +1087,26 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://data.archiefpunt.be/lang_string_array_dt"
+  } ]
+}, {
+  "@id" : "_:genid198",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://data.archiefpunt.be/lang_string_dt"
+  } ]
+}, {
+  "@id" : "_:genid199",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "0"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://data.archiefpunt.be/string_dt"
   } ]
 }, {
   "@id" : "_:genid2",
@@ -1136,7 +1136,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/lang_string_dt"
+    "@id" : "https://data.archiefpunt.be/time_dt"
   } ]
 }, {
   "@id" : "_:genid201",
@@ -1146,7 +1146,7 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/string_dt"
+    "@id" : "https://data.archiefpunt.be/uri_dt"
   } ]
 }, {
   "@id" : "_:genid202",
@@ -1156,30 +1156,10 @@
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/time_dt"
-  } ]
-}, {
-  "@id" : "_:genid203",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/uri_dt"
-  } ]
-}, {
-  "@id" : "_:genid204",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "0"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://data.archiefpunt.be/year_dt"
   } ]
 }, {
-  "@id" : "_:genid205",
+  "@id" : "_:genid203",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1189,7 +1169,7 @@
     "@id" : "https://data.archiefpunt.be/boolean_dt"
   } ]
 }, {
-  "@id" : "_:genid206",
+  "@id" : "_:genid204",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1199,7 +1179,7 @@
     "@id" : "https://data.archiefpunt.be/date_dt"
   } ]
 }, {
-  "@id" : "_:genid207",
+  "@id" : "_:genid205",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1209,7 +1189,7 @@
     "@id" : "https://data.archiefpunt.be/datetime_dt"
   } ]
 }, {
-  "@id" : "_:genid208",
+  "@id" : "_:genid206",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1219,7 +1199,7 @@
     "@id" : "https://data.archiefpunt.be/double_dt"
   } ]
 }, {
-  "@id" : "_:genid209",
+  "@id" : "_:genid207",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1227,6 +1207,26 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://data.archiefpunt.be/duration_dt"
+  } ]
+}, {
+  "@id" : "_:genid208",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://data.archiefpunt.be/float_dt"
+  } ]
+}, {
+  "@id" : "_:genid209",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
   "@id" : "_:genid21",
@@ -1246,7 +1246,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/float_dt"
+    "@id" : "https://data.archiefpunt.be/integer_dt"
   } ]
 }, {
   "@id" : "_:genid211",
@@ -1256,7 +1256,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/id"
+    "@id" : "https://data.archiefpunt.be/lang_string_dt"
   } ]
 }, {
   "@id" : "_:genid212",
@@ -1266,7 +1266,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/integer_dt"
+    "@id" : "https://data.archiefpunt.be/string_dt"
   } ]
 }, {
   "@id" : "_:genid213",
@@ -1276,7 +1276,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/lang_string_dt"
+    "@id" : "https://data.archiefpunt.be/time_dt"
   } ]
 }, {
   "@id" : "_:genid214",
@@ -1286,7 +1286,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/string_dt"
+    "@id" : "https://data.archiefpunt.be/uri_dt"
   } ]
 }, {
   "@id" : "_:genid215",
@@ -1296,17 +1296,17 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/time_dt"
+    "@id" : "https://data.archiefpunt.be/year_dt"
   } ]
 }, {
   "@id" : "_:genid216",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/uri_dt"
+    "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
   "@id" : "_:genid217",
@@ -1316,7 +1316,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/year_dt"
+    "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
   "@id" : "_:genid218",
@@ -1466,22 +1466,22 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/id"
+    "@id" : "https://data.archiefpunt.be/type_vergelijking"
   } ]
 }, {
   "@id" : "_:genid231",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/id"
+    "@id" : "https://data.archiefpunt.be/waarde"
   } ]
 }, {
   "@id" : "_:genid232",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
@@ -1491,7 +1491,7 @@
 }, {
   "@id" : "_:genid233",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
@@ -1501,17 +1501,17 @@
 }, {
   "@id" : "_:genid234",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/type_vergelijking"
+    "@id" : "https://data.archiefpunt.be/type_waarde"
   } ]
 }, {
   "@id" : "_:genid235",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
@@ -1521,7 +1521,7 @@
 }, {
   "@id" : "_:genid236",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
@@ -1531,7 +1531,7 @@
 }, {
   "@id" : "_:genid237",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
@@ -1541,12 +1541,12 @@
 }, {
   "@id" : "_:genid238",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/type_waarde"
+    "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
   "@id" : "_:genid239",
@@ -1556,7 +1556,7 @@
     "@value" : "1"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/waarde"
+    "@id" : "https://data.archiefpunt.be/id"
   } ]
 }, {
   "@id" : "_:genid24",
@@ -1573,33 +1573,13 @@
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/id"
-  } ]
-}, {
-  "@id" : "_:genid241",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/id"
-  } ]
-}, {
-  "@id" : "_:genid242",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#minCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
     "@value" : "0"
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://data.archiefpunt.be/vergelijking"
   } ]
 }, {
-  "@id" : "_:genid243",
+  "@id" : "_:genid241",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1609,7 +1589,7 @@
     "@id" : "https://data.archiefpunt.be/waarde"
   } ]
 }, {
-  "@id" : "_:genid244",
+  "@id" : "_:genid242",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1619,7 +1599,7 @@
     "@id" : "https://data.archiefpunt.be/bijdragers"
   } ]
 }, {
-  "@id" : "_:genid245",
+  "@id" : "_:genid243",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1629,7 +1609,7 @@
     "@id" : "https://data.archiefpunt.be/bron_waardering"
   } ]
 }, {
-  "@id" : "_:genid246",
+  "@id" : "_:genid244",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1639,7 +1619,7 @@
     "@id" : "https://data.archiefpunt.be/datum_waardering"
   } ]
 }, {
-  "@id" : "_:genid247",
+  "@id" : "_:genid245",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1649,7 +1629,7 @@
     "@id" : "https://data.archiefpunt.be/opmerkingen"
   } ]
 }, {
-  "@id" : "_:genid248",
+  "@id" : "_:genid246",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#minCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1659,7 +1639,7 @@
     "@id" : "https://data.archiefpunt.be/waardestelling"
   } ]
 }, {
-  "@id" : "_:genid249",
+  "@id" : "_:genid247",
   "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
   "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
     "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
@@ -1667,6 +1647,16 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://data.archiefpunt.be/datum_waardering"
+  } ]
+}, {
+  "@id" : "_:genid248",
+  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
+  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
+    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
+    "@value" : "1"
+  } ],
+  "http://www.w3.org/2002/07/owl#onProperty" : [ {
+    "@id" : "https://data.archiefpunt.be/waardestelling"
   } ]
 }, {
   "@id" : "_:genid25",
@@ -1677,16 +1667,6 @@
   } ],
   "http://www.w3.org/2002/07/owl#onProperty" : [ {
     "@id" : "https://data.archiefpunt.be/beheerder"
-  } ]
-}, {
-  "@id" : "_:genid250",
-  "@type" : [ "http://www.w3.org/2002/07/owl#Restriction" ],
-  "http://www.w3.org/2002/07/owl#maxCardinality" : [ {
-    "@type" : "http://www.w3.org/2001/XMLSchema#nonNegativeInteger",
-    "@value" : "1"
-  } ],
-  "http://www.w3.org/2002/07/owl#onProperty" : [ {
-    "@id" : "https://data.archiefpunt.be/waardestelling"
   } ]
 }, {
   "@id" : "_:genid26",
@@ -2541,7 +2521,7 @@
     "@value" : "Archiefpunt, Meemo, KADOC, LIBIS"
   } ],
   "dc11:date" : [ {
-    "@value" : "2022-08-26 11:45:34 +0200"
+    "@value" : "2022-09-20 15:05:50 +0200"
   } ],
   "dc11:description" : [ {
     "@value" : "Archiefbank ontology"
@@ -2550,7 +2530,7 @@
     "@value" : "Archiefbank ontology"
   } ],
   "http://www.w3.org/2002/07/owl#versionInfo" : [ {
-    "@value" : "1.0.1"
+    "@value" : "1.0.2"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Aangroei",
@@ -3271,10 +3251,6 @@
     "@id" : "_:genid168"
   }, {
     "@id" : "_:genid169"
-  }, {
-    "@id" : "_:genid170"
-  }, {
-    "@id" : "_:genid171"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Rechtenstatus",
@@ -3288,9 +3264,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid172"
+    "@id" : "_:genid170"
   }, {
-    "@id" : "_:genid173"
+    "@id" : "_:genid171"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Rol",
@@ -3304,9 +3280,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Concept"
   }, {
-    "@id" : "_:genid174"
+    "@id" : "_:genid172"
   }, {
-    "@id" : "_:genid175"
+    "@id" : "_:genid173"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/RolBeheerder",
@@ -3320,9 +3296,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid176"
+    "@id" : "_:genid174"
   }, {
-    "@id" : "_:genid177"
+    "@id" : "_:genid175"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/RolSamensteller",
@@ -3336,9 +3312,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid178"
+    "@id" : "_:genid176"
   }, {
-    "@id" : "_:genid179"
+    "@id" : "_:genid177"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Samensteller",
@@ -3352,11 +3328,11 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/EntiteitBasis"
   }, {
+    "@id" : "_:genid178"
+  }, {
+    "@id" : "_:genid179"
+  }, {
     "@id" : "_:genid180"
-  }, {
-    "@id" : "_:genid181"
-  }, {
-    "@id" : "_:genid182"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Soort",
@@ -3370,9 +3346,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Concept"
   }, {
-    "@id" : "_:genid183"
+    "@id" : "_:genid181"
   }, {
-    "@id" : "_:genid184"
+    "@id" : "_:genid182"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Taal",
@@ -3386,9 +3362,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid185"
+    "@id" : "_:genid183"
   }, {
-    "@id" : "_:genid186"
+    "@id" : "_:genid184"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Term",
@@ -3402,9 +3378,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/EntiteitBasis"
   }, {
-    "@id" : "_:genid187"
+    "@id" : "_:genid185"
   }, {
-    "@id" : "_:genid188"
+    "@id" : "_:genid186"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Test",
@@ -3416,6 +3392,10 @@
     "@value" : "Test"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
+    "@id" : "_:genid187"
+  }, {
+    "@id" : "_:genid188"
+  }, {
     "@id" : "_:genid189"
   }, {
     "@id" : "_:genid190"
@@ -3469,10 +3449,6 @@
     "@id" : "_:genid214"
   }, {
     "@id" : "_:genid215"
-  }, {
-    "@id" : "_:genid216"
-  }, {
-    "@id" : "_:genid217"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Toegang",
@@ -3486,9 +3462,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/EntiteitBasis"
   }, {
-    "@id" : "_:genid218"
+    "@id" : "_:genid216"
   }, {
-    "@id" : "_:genid219"
+    "@id" : "_:genid217"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/TypeAgent",
@@ -3502,9 +3478,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid220"
+    "@id" : "_:genid218"
   }, {
-    "@id" : "_:genid221"
+    "@id" : "_:genid219"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/TypeConcept",
@@ -3518,9 +3494,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid222"
+    "@id" : "_:genid220"
   }, {
-    "@id" : "_:genid223"
+    "@id" : "_:genid221"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/TypeIdentificatienummer",
@@ -3534,9 +3510,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid224"
+    "@id" : "_:genid222"
   }, {
-    "@id" : "_:genid225"
+    "@id" : "_:genid223"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/TypeNaam",
@@ -3550,9 +3526,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid226"
+    "@id" : "_:genid224"
   }, {
-    "@id" : "_:genid227"
+    "@id" : "_:genid225"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/TypeVergelijking",
@@ -3566,9 +3542,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid228"
+    "@id" : "_:genid226"
   }, {
-    "@id" : "_:genid229"
+    "@id" : "_:genid227"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/TypeWaarde",
@@ -3582,9 +3558,9 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/Codetabel"
   }, {
-    "@id" : "_:genid230"
+    "@id" : "_:genid228"
   }, {
-    "@id" : "_:genid231"
+    "@id" : "_:genid229"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Vergelijking",
@@ -3598,13 +3574,13 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/EntiteitBasis"
   }, {
+    "@id" : "_:genid230"
+  }, {
+    "@id" : "_:genid231"
+  }, {
     "@id" : "_:genid232"
   }, {
     "@id" : "_:genid233"
-  }, {
-    "@id" : "_:genid234"
-  }, {
-    "@id" : "_:genid235"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Waarde",
@@ -3618,6 +3594,10 @@
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/EntiteitBasis"
   }, {
+    "@id" : "_:genid234"
+  }, {
+    "@id" : "_:genid235"
+  }, {
     "@id" : "_:genid236"
   }, {
     "@id" : "_:genid237"
@@ -3625,10 +3605,6 @@
     "@id" : "_:genid238"
   }, {
     "@id" : "_:genid239"
-  }, {
-    "@id" : "_:genid240"
-  }, {
-    "@id" : "_:genid241"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/Waardering",
@@ -3641,6 +3617,10 @@
   } ],
   "http://www.w3.org/2000/01/rdf-schema#subClassOf" : [ {
     "@id" : "https://data.archiefpunt.be/EntiteitBasis"
+  }, {
+    "@id" : "_:genid240"
+  }, {
+    "@id" : "_:genid241"
   }, {
     "@id" : "_:genid242"
   }, {
@@ -3655,10 +3635,6 @@
     "@id" : "_:genid247"
   }, {
     "@id" : "_:genid248"
-  }, {
-    "@id" : "_:genid249"
-  }, {
-    "@id" : "_:genid250"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/_audit",
@@ -3848,7 +3824,7 @@
   "@id" : "https://data.archiefpunt.be/bibliografie_agent",
   "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : "Bronnen over de agent."
+    "@value" : "Bronnen gebruikt om agentbeschrijving op te stellen."
   } ],
   "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
     "@id" : "https://data.archiefpunt.be/Agent"
@@ -3953,7 +3929,7 @@
   "@id" : "https://data.archiefpunt.be/bronnen_agent",
   "@type" : [ "http://www.w3.org/2002/07/owl#DatatypeProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : "Bronnen gebruikt om agentbeschrijving op te stellen."
+    "@value" : "Bronnen die gebruik maakten van de agent"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
     "@id" : "https://data.archiefpunt.be/Agent"
@@ -4843,7 +4819,7 @@
   "@id" : "https://data.archiefpunt.be/selectie",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : "Verklaring over de erfgoedwaarde van het archiefbestand en de vergelijking met andere archiefbestanden."
+    "@value" : "selectie"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
     "@id" : "https://data.archiefpunt.be/Archief"
@@ -4888,14 +4864,12 @@
   "@id" : "https://data.archiefpunt.be/taal",
   "@type" : [ "http://www.w3.org/2002/07/owl#ObjectProperty" ],
   "http://www.w3.org/2000/01/rdf-schema#comment" : [ {
-    "@value" : ""
+    "@value" : "trefwoord dat aangeeft welke taal gebruikt wordt in het archief"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#domain" : [ {
     "@id" : "https://data.archiefpunt.be/Agent"
   }, {
     "@id" : "https://data.archiefpunt.be/Archief"
-  }, {
-    "@id" : "https://data.archiefpunt.be/Raadplegingsvoorwaarde"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#label" : [ {
     "@value" : "taal"
@@ -4931,7 +4905,7 @@
     "@value" : "tekst"
   } ],
   "http://www.w3.org/2000/01/rdf-schema#range" : [ {
-    "@id" : "http://www.w3.org/2001/XMLSchema#string"
+    "@id" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString"
   } ]
 }, {
   "@id" : "https://data.archiefpunt.be/telefoon",
