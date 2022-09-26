@@ -67,7 +67,7 @@ class MainController < GenericController
   rescue StandardError => e
     halt 500, api_error('500', request.url, 'SparQL error', e.message, e)
   ensure
-    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
 
   get '/schema.json' do
@@ -77,7 +77,7 @@ class MainController < GenericController
   rescue StandardError => e
     halt 500, api_error('500', request.url, 'Unknown Error', e.message, e)
   ensure
-    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
 
   get '/:entity' do
@@ -103,7 +103,7 @@ class MainController < GenericController
     content_type :json
     halt 500, api_error(response.status, request.url, "Error in '#{e.name}'", e.cause, e)
   ensure
-    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
 
   post '/:entity' do
@@ -135,7 +135,7 @@ class MainController < GenericController
     content_type :json
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
   ensure
-    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
 
   get '/:entity/model' do
@@ -156,7 +156,7 @@ class MainController < GenericController
     content_type :json
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
   ensure
-    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
 
   put '/:entity/:id' do
@@ -194,7 +194,7 @@ class MainController < GenericController
     puts e.backtrace.join("\n")
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
   ensure
-    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
 
   delete '/:entity/:id' do
@@ -224,7 +224,7 @@ class MainController < GenericController
     puts e.backtrace.join("\n")
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
   ensure
-    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
 
   get '/:entity/:id' do
@@ -252,6 +252,6 @@ class MainController < GenericController
     content_type :json
     halt 500, api_error(response.status, request.url, 'Unknown Error', e.message, e)
   ensure
-    response.headers['X-TIMING'] = (((Time.now - timing_start)*1000).to_i).to_s
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
 end
