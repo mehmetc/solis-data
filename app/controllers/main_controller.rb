@@ -86,6 +86,7 @@ class MainController < GenericController
     #recursive_compact(JSON.parse(for_resource.all(params.merge({stats: {total: :count}})).to_jsonapi)).to_json
     #
     context = load_context #OpenStruct.new(query_user: params.key?(:gebruiker) ? params[:gebruiker] : 'unknown')
+    context.from_cache=0
     Graphiti::with_context(context) do
       for_resource.all(params.merge({ stats: { total: :count } })).to_jsonapi
     end
@@ -233,6 +234,7 @@ class MainController < GenericController
     content_type :json
     id = params.delete(:id)
     context = load_context
+    context.from_cache=0
     Graphiti::with_context(context) do
       data = { id: id }
       data = data.merge(params)
