@@ -2,18 +2,14 @@ require 'active_support/all'
 require 'sinatra/base'
 require 'http/accept'
 require 'solis'
-#require 'lib/kafka_queue'
 require 'lib/file_queue'
-
 require 'app/helpers/main_helper'
 
 require solis_conf[:hooks] if solis_conf.key?(:hooks) && File.exist?(solis_conf[:hooks])
-require 'lib/redis_queue'
 
 class GenericController < Sinatra::Base
   helpers Sinatra::MainHelper
 
-  #  DATA_QUEUE =  Rdkafka::Config.new({:"bootstrap.servers" => "kafka:9092"}).producer
   DATA_QUEUE = FileQueue.new(Solis::ConfigFile[:kafka][:name], base_dir: Solis::ConfigFile[:events])
   #DATA_QUEUE = KafkaQueue.new(Solis::ConfigFile[:kafka][:name], Solis::ConfigFile[:kafka][:config])
   #DATA_QUEUE = RedisQueue.new(Solis::ConfigFile[:redis][:queue])
