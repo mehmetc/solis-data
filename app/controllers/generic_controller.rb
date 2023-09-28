@@ -10,9 +10,7 @@ require solis_conf[:hooks] if solis_conf.key?(:hooks) && File.exist?(solis_conf[
 class GenericController < Sinatra::Base
   helpers Sinatra::MainHelper
 
-  DATA_QUEUE = FileQueue.new(Solis::ConfigFile[:kafka][:name], base_dir: Solis::ConfigFile[:events])
-  #DATA_QUEUE = KafkaQueue.new(Solis::ConfigFile[:kafka][:name], Solis::ConfigFile[:kafka][:config])
-  #DATA_QUEUE = RedisQueue.new(Solis::ConfigFile[:redis][:queue])
+  DATA_QUEUE = FileQueue.new(Solis::ConfigFile[:name], base_dir: Solis::ConfigFile[:events])
   SOLIS_CONF = solis_conf.key?(:hooks) && File.exist?(solis_conf[:hooks]) ? solis_conf.merge(Solis::HooksHelper.hooks(DATA_QUEUE)) : solis_conf
 
   configure do
@@ -26,7 +24,7 @@ class GenericController < Sinatra::Base
     set :static, true
     set :public_folder, "#{root}/public"
     set :role, ENV['SERVICE_ROLE']
-    set :cache, Moneta.new(:File, dir: Solis::ConfigFile[:cache], expires: 86400)
+    set :cache, Moneta.new(:File, dir: Solis::ConfigFile[:cache], expires: (Solis::ConfigFile[:cache_expire] || 86400))
 
     set :solis, Solis::Graph.new(Solis::Shape::Reader::File.read(solis_conf[:shape]),
                                        SOLIS_CONF)
