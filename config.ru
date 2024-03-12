@@ -1,8 +1,10 @@
 # encoding: utf-8
-$LOAD_PATH << '.'
+$LOAD_PATH << '.' << './lib'
 Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
 
+require 'active_support/all'
+require 'rack'
 require 'solis'
 require 'rack/cors'
 require 'app/controllers/main_controller'

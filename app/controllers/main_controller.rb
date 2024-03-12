@@ -43,7 +43,13 @@ class MainController < GenericController
     timing_start = Time.now
     content_type env['HTTP_ACCEPT'] || 'text/turtle'
     result = ''
-    data = request.body.read
+
+    if params.key?('query')
+      query = params['query']
+      data = "query=#{query}"
+    else
+      data = request.body.read
+    end
 
     halt 501, api_error('501', request.url, 'SparQL error', 'INSERT, UPDATE, DELETE not allowed') unless data.match(/clear|drop|insert|update|delete/i).nil?
     data = URI.decode_www_form(data).to_h
@@ -219,11 +225,11 @@ class MainController < GenericController
     halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
-    halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
+    halt 404, api_error('404', request.url, 'Not found', "'#{params[:id]}' niet gevonden in  #{params[:entity]}")
   rescue StandardError => e
     content_type :json
     puts e.backtrace.join("\n")
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
+    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
