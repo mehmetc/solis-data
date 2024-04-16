@@ -108,7 +108,7 @@ class MainController < GenericController
   rescue StandardError => e
     puts e.backtrace.join("\n")
     content_type :json
-    halt 500, api_error(response.status, request.url, "Error in '#{e.name}'", e.cause, e)
+    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
