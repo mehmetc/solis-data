@@ -108,7 +108,7 @@ class MainController < GenericController
   rescue StandardError => e
     puts e.backtrace.join("\n")
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
+    halt 500, api_error(response.status, request.url, "Error for '#{params[:entity]}", e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
@@ -140,7 +140,7 @@ class MainController < GenericController
     halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
   rescue StandardError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
+    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
@@ -161,7 +161,7 @@ class MainController < GenericController
     halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
   rescue StandardError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
+    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
@@ -199,7 +199,7 @@ class MainController < GenericController
   rescue StandardError => e
     content_type :json
     puts e.backtrace.join("\n")
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause, e)
+    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
