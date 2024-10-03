@@ -116,11 +116,16 @@ module Sinatra
       {}
     end
 
-    def dump_by_content_type(resource, content_type)
+    def dump_by_content_type(resource, content_type_format_string)
+      if content_type_format_string.eql?('application/wixjson')
+        content_type :json
+        resource.to_json
+      else
       # raise "Content-Type: #{content_type} not found use one of\n #{RDF::Format.content_types.keys.join(', ')}" unless RDF::Format.content_types.key?(content_type)
-      content_type_format = RDF::Format.for(:content_type => content_type).to_sym
+        content_type_format = RDF::Format.for(:content_type => content_type_format_string).to_sym
       # raise "No writer found for #{content_type}" if  RDF::Writer.for(content_type_format).nil?
-      dump(resource, content_type_format)
+        dump(resource, content_type_format)
+      end
     rescue StandardError => e
       dump(resource, :jsonapi)
     end
