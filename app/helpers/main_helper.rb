@@ -119,7 +119,7 @@ module Sinatra
     def dump_by_content_type(resource, content_type_format_string)
       if content_type_format_string.eql?('application/wixjson')
         content_type :json
-        resource.to_json
+        to_wix(resource.data).to_json
       else
       # raise "Content-Type: #{content_type} not found use one of\n #{RDF::Format.content_types.keys.join(', ')}" unless RDF::Format.content_types.key?(content_type)
         content_type_format = RDF::Format.for(:content_type => content_type_format_string).to_sym
@@ -145,6 +145,41 @@ module Sinatra
 
     def formats
       (['application/vnd.api+json', 'application/json'] | RDF::Format.content_types.keys)
+    end
+
+    def to_wix(klass)
+      if klass.is_a?(Array)
+        result = []
+        klass.each do |k|
+          result << convert_wix(k)
+        end
+      else
+        result = {}
+        result.merge!(convert_wix(klass))
+      end
+
+      { 'data' => result}
+    end
+
+    def convert_wix(klass)
+      result = {}
+      return klass if klass.is_a?(String)
+      klass.instance_variables.map { |m| m.to_s.gsub(/^@/, '') }
+           .select { |s| !["model_name", "model_plural_name", "language"].include?(s) && s !~ /^__/ }
+           .each do |attribute, value|
+        data = klass.instance_variable_get("@#{attribute}")
+        if data && data.class.ancestors.map(&:to_s).include?('Solis::Model')
+          result[attribute]=convert_wix(data)
+        elsif data.is_a?(Array)
+          result[attribute] ||= []
+          data.each do |item|
+            result[attribute] << convert_wix(item)
+          end
+        else
+          result[attribute] = data
+        end
+      end
+      result
     end
   end
   helpers MainHelper
