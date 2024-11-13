@@ -35,9 +35,42 @@ class MainController < GenericController
   end
 
   get '/_sparql/?' do
-    content_type :json
-    halt 501, api_error('501', request.url, 'SparQL error', 'Only POST queries are supported')
+    timing_start = Time.now
+    content_type env['HTTP_ACCEPT'] || 'text/turtle'
+    result = ''
+
+    if params.key?('query')
+      query = params['query']
+      data = "query=#{query}"
+    else
+      data = request.body.read
+    end
+
+    halt 501, api_error('501', request.url, 'SparQL error', 'INSERT, UPDATE, DELETE not allowed') unless data.match(/clear|drop|insert|update|delete/i).nil?
+    data = URI.decode_www_form(data).to_h
+
+    url = "#{solis_conf[:sparql_endpoint]}"
+
+    response = HTTP.post(url, form: data, headers: {'Accept' => env['HTTP_ACCEPT'] || 'text/turtle'})
+    if response.status == 200
+      result = response.body.to_s
+    elsif response.status == 500
+      halt 500, api_error('500', request.url, 'SparQL error', response.body.to_s)
+    elsif response.status == 400
+      halt 400, api_error('400', request.url, 'SparQL error', response.body.to_s)
+    else
+      halt response.status, api_error(response.status.to_s, request.url, 'SparQL error', response.body.to_s)
+    end
+
+    result
+  rescue HTTP::Error => e
+    halt 500, api_error('500', request.url, 'SparQL error', e.message, e)
+  rescue StandardError => e
+    halt 500, api_error('500', request.url, 'SparQL error', e.message, e)
+  ensure
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
+
 
   post '/_sparql' do
     timing_start = Time.now
