@@ -144,7 +144,7 @@ module Sinatra
     end
 
     def formats
-      (['application/vnd.api+json', 'application/json'] | RDF::Format.content_types.keys)
+      (['application/vnd.api+json', 'application/json', 'application/wixjson'] | RDF::Format.writer_types)
     end
 
     def to_wix(klass)
