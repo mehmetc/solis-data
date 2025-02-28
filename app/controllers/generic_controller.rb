@@ -26,8 +26,7 @@ class GenericController < Sinatra::Base
     set :role, ENV['SERVICE_ROLE']
     set :cache, Moneta.new(:File, dir: Solis::ConfigFile[:cache], expires: (Solis::ConfigFile[:cache_expire] || 86400))
 
-    set :solis, Solis::Graph.new(Solis::Shape::Reader::File.read(solis_conf[:shape]),
-                                       SOLIS_CONF)
+    set :solis, Solis::Graph.new(Solis::Shape::Reader::File.read(solis_conf[:shape]), SOLIS_CONF)
   end
 
   before do

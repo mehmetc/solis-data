@@ -16,6 +16,9 @@ class FileQueue
     FileUtils.mkdir_p(@in_dir) unless Dir.exist?(@in_dir)
     FileUtils.mkdir_p(@out_dir) unless Dir.exist?(@out_dir)
     FileUtils.mkdir_p(@fail_dir) unless Dir.exist?(@fail_dir)
+    @logger = Logger.new(STDOUT)
+
+    @logger.info("EVENT directories are #{@in_dir}, #{@out_dir}, #{@fail_dir}")
   end
 
   def count
@@ -34,6 +37,7 @@ class FileQueue
     return nil if item.nil?
 
     filename = "%10.9f" % Time.now.to_f
+    @logger.info("EVENT #{@in_dir}/#{filename}.f")
     File.open("#{@in_dir}/#{filename}.f", 'wb') do |f|
       f.puts item.to_json
     end
