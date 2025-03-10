@@ -15,6 +15,7 @@ class GenericController < Sinatra::Base
 
   configure do
     mime_type :jsonapi, 'application/vnd.api+json'
+    set :environment, :production # fixes Rack::Protection::HostAuthentication issue
     set :method_override, true # make a PUT, DELETE possible with the _method parameter
     set :show_exceptions, false
     set :raise_errors, false
