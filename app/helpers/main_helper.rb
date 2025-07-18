@@ -2,6 +2,7 @@ require 'json'
 require 'jwt'
 require 'stopwords'
 require 'solis/store/sparql/client'
+require 'solis/config_file'
 
 def solis_conf
   raise 'Please set SERVICE_ROLE environment parameter' unless ENV.include?('SERVICE_ROLE')
@@ -112,7 +113,7 @@ module Sinatra
         {}
       end
     rescue StandardError => e
-      LOGGER.warn('No JWT token defined')
+      logger.warn('No JWT token defined')
       {}
     end
 
