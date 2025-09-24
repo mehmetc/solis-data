@@ -25,6 +25,10 @@ class FileQueue
     Dir.glob("#{@in_dir}/*.f").count
   end
 
+  def size
+    count
+  end
+
   def [](index)
     JSON.parse(File.read(Dir.glob("#{@in_dir}/*.f").sort[index]))
   end

@@ -118,6 +118,8 @@ module Sinatra
     end
 
     def dump_by_content_type(resource, content_type_format_string)
+      content_type_format_string = 'application/ld+json' if ['application/ldjson', 'application/jsonld'].include?(content_type_format_string)
+
       if content_type_format_string.eql?('application/wixjson')
         content_type :json
         to_wix(resource.data).to_json

@@ -13,9 +13,8 @@ class MainController < GenericController
   get '/:entity' do
     timing_start = Time.now
     content_type :json
-    #recursive_compact(JSON.parse(for_resource.all(params.merge({stats: {total: :count}})).to_jsonapi)).to_json
-    #
-    context = load_context #OpenStruct.new(query_user: params.key?(:gebruiker) ? params[:gebruiker] : 'unknown')
+
+    context = load_context
     context.from_cache=0
     Graphiti::with_context(context) do
       dump_by_content_type(for_resource.all(params.merge({ stats: { total: :count } })), @media_type) #.to_jsonapi
@@ -47,12 +46,16 @@ class MainController < GenericController
     context = load_context
     context.from_cache=0
     Graphiti::with_context(context) do
-      model = for_model.new(data)
-      model.save(params.key?(:validate_dependencies) ? !params[:validate_dependencies].eql?('false') : true)
-      result = for_resource.find({ id: model.id })
-      return result.to_jsonapi
+      ids = []
+      data = [data] unless data.is_a?(Array)
+      data.each do |d|
+        model = for_model.new(d)
+        model.save(params.key?(:validate_dependencies) ? !params[:validate_dependencies].eql?('false') : true)
+        ids << model.id
+      end
+
+      dump_by_content_type( for_resource.all({"filter":{"id":{"eq":"#{ids.join(',')}"}}}), @media_type )
     end
-    result.to_jsonapi
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, 'Not found', "Niet gevonden in  #{params[:entity]} #{data.to_json}")
@@ -165,11 +168,32 @@ class MainController < GenericController
     id = params.delete(:id)
     context = load_context
     context.from_cache=0
-    Graphiti::with_context(context) do
-      data = { id: id }
-      data = data.merge(params)
-      result = for_resource.find(data)
-      dump_by_content_type(result, @media_type)
+    if params.key?('depth')
+      depth = params[:depth].to_i
+      depth = 1 if depth < 1
+      data_logic_config = Solis::ConfigFile[:services][:data_logic]
+      url = "#{data_logic_config[:host]}#{data_logic_config[:base_path]}/graph?entity=#{params[:entity].classify}&id=#{id}&depth=#{depth}&from_cache=0"
+      begin
+        response = HTTP.get(url)
+        case response.code
+        when 200
+          result = JSON.parse(response.body)
+        when 404
+          raise Graphiti::Errors::RecordNotFound
+        else
+          halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
+        end
+      rescue StandardError => e
+        halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
+      end
+      result.to_json
+    else
+      Graphiti::with_context(context) do
+        data = { id: id }
+        data = data.merge(params)
+        result = for_resource.find(data)
+        dump_by_content_type(result, @media_type)
+      end
     end
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
