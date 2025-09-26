@@ -172,7 +172,7 @@ class MainController < GenericController
       depth = params[:depth].to_i
       depth = 1 if depth < 1
       data_logic_config = Solis::ConfigFile[:services][:data_logic]
-      url = "#{data_logic_config[:host]}#{data_logic_config[:base_path]}/graph?entity=#{params[:entity].classify}&id=#{id}&depth=#{depth}&from_cache=0"
+      url = "#{data_logic_config[:host]}#{data_logic_config[:base_path]}/graph?from_cache=0&language=#{context.language}&entity=#{params[:entity].classify}&id=#{id}&depth=#{depth}"
       begin
         response = HTTP.get(url)
         case response.code
@@ -183,6 +183,8 @@ class MainController < GenericController
         else
           halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
         end
+      rescue HTTP::ConnectionError => e
+        halt 503, api_error(503, request.url, 'Service unavailable', e.cause || e.message, e)
       rescue StandardError => e
         halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
       end
