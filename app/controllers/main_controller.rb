@@ -172,7 +172,7 @@ class MainController < GenericController
       depth = params[:depth].to_i
       depth = 1 if depth < 1
       data_logic_config = Solis::ConfigFile[:services][:data_logic]
-      url = "#{data_logic_config[:host]}#{data_logic_config[:base_path]}/graph?from_cache=0&language=#{context.language}&entity=#{params[:entity].classify}&id=#{id}&depth=#{depth}"
+      url = "#{data_logic_config[:host]}#{data_logic_config[:base_path]}graph?from_cache=0&language=#{context.language}&entity=#{params[:entity].classify}&id=#{id}&depth=#{depth}"
       begin
         response = HTTP.get(url)
         case response.code
