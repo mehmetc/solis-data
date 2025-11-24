@@ -21,17 +21,17 @@ class MainController < GenericController
     end
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid attribute', e.message, e)
   rescue Solis::Error::InvalidDatatypeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
   rescue StandardError => e
     puts e.backtrace.join("\n")
     content_type :json
-    halt 500, api_error(response.status, request.url, "Error for '#{params[:entity]}", e.cause || e.message, e)
+    halt 500, api_error('500', request.url, "Error for '#{params[:entity]}", e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
@@ -40,7 +40,11 @@ class MainController < GenericController
     timing_start = Time.now
     content_type :json
     result = nil
-    data = JSON.parse(request.body.read)
+    begin
+      data = JSON.parse(request.body.read)
+    rescue JSON::ParserError => e
+      halt 400, api_error('400', request.url, 'Invalid JSON', e.message)
+    end
     data = data['attributes'] if data.include?('attributes')
 
     context = load_context
@@ -61,13 +65,13 @@ class MainController < GenericController
     halt 404, api_error('404', request.url, 'Not found', "Niet gevonden in  #{params[:entity]} #{data.to_json}")
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid attribute', e.message, e)
   rescue Solis::Error::InvalidDatatypeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid datatype', e.message, e)
   rescue StandardError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
@@ -82,13 +86,13 @@ class MainController < GenericController
     end
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid attribute', e.message, e)
   rescue Solis::Error::InvalidDatatypeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid datatype', e.message, e)
   rescue StandardError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
@@ -116,17 +120,17 @@ class MainController < GenericController
     result.to_jsonapi
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid attribute', e.message, e)
   rescue Solis::Error::InvalidDatatypeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
   rescue StandardError => e
     content_type :json
     puts e.backtrace.join("\n")
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
@@ -146,17 +150,17 @@ class MainController < GenericController
     resource.to_jsonapi
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid attribute', e.message, e)
   rescue Solis::Error::InvalidDatatypeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
   rescue StandardError => e
     content_type :json
     puts e.backtrace.join("\n")
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.cause || e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
@@ -181,12 +185,12 @@ class MainController < GenericController
         when 404
           raise Graphiti::Errors::RecordNotFound
         else
-          halt 500, api_error(response.status, request.url, 'Unknown Error', response.body)
+          halt 500, api_error('500', request.url, 'Unknown Error', response.body)
         end
       rescue HTTP::ConnectionError => e
         halt 503, api_error(503, request.url, 'Service unavailable', e.cause || e.message, e)
       rescue StandardError => e
-        halt 500, api_error(response.status, request.url, 'Unknown Error', e.cause || e.message, e)
+        halt 500, api_error('500', request.url, 'Unknown Error', e.cause || e.message, e)
       end
       result.to_json
     else
@@ -199,16 +203,16 @@ class MainController < GenericController
     end
   rescue Solis::Error::InvalidAttributeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid attribute', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid attribute', e.message, e)
   rescue Solis::Error::InvalidDatatypeError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Invalid datatype', e.message, e)
+    halt 500, api_error('500', request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
     halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
   rescue StandardError => e
     content_type :json
-    halt 500, api_error(response.status, request.url, 'Unknown Error', e.message, e)
+    halt 500, api_error('500', request.url, 'Unknown Error', e.message, e)
   ensure
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
