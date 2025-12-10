@@ -31,6 +31,7 @@ class GenericController < Sinatra::Base
   end
 
   before do
+    @start_time = Time.now
     accept_header = request.env['HTTP_ACCEPT']
     accept_header = params['accept'] if params.include?('accept')
     accept_header = 'application/json' if accept_header.nil?
@@ -43,6 +44,11 @@ class GenericController < Sinatra::Base
     end
 
     content_type @media_type
+  end
+
+  after do
+    duration = Time.now - @start_time
+    puts "#{request.path} took #{duration}s" if duration > 0.1
   end
 
   get '/' do
