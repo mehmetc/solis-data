@@ -41,6 +41,7 @@ class MainController < GenericController
     content_type :json
     result = nil
     begin
+      request.body.rewind
       data = JSON.parse(request.body.read)
     rescue JSON::ParserError => e
       halt 400, api_error('400', request.url, 'Invalid JSON', e.message)
