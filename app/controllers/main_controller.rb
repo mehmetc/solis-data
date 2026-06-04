@@ -41,7 +41,7 @@ class MainController < GenericController
     content_type :json
     result = nil
     begin
-      request.body.rewind
+      request.body.rewind if request.body.respond_to?(:rewind)
       data = JSON.parse(request.body.read)
     rescue JSON::ParserError => e
       halt 400, api_error('400', request.url, 'Invalid JSON', e.message)
@@ -136,6 +136,46 @@ class MainController < GenericController
     headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
   end
 
+  patch '/:entity/:id' do
+    timing_start = Time.now
+    content_type :json
+    result = {}
+    context = load_context
+    context.from_cache=0
+    Graphiti::with_context(context) do
+      resource = for_resource.find({ id: params['id'] })
+      raise Graphiti::Errors::RecordNotFound unless resource
+
+      data = JSON.parse(request.body.read)
+      data = data['attributes'] if data.include?('attributes')
+      data['id'] = params[:id] unless data.include?('id')
+
+      resource = for_model.new.update(data,
+                                      params.key?(:validate_dependencies) ? !params[:validate_dependencies].eql?('false') : true,
+                                      patch: true)
+
+      result = for_resource.find({ id: resource.id })
+      return result.to_jsonapi
+    end
+    result.to_jsonapi
+  rescue Solis::Error::InvalidAttributeError => e
+    content_type :json
+    halt 500, api_error('500', request.url, 'Invalid attribute', e.message, e)
+  rescue Solis::Error::InvalidDatatypeError => e
+    content_type :json
+    halt 500, api_error('500', request.url, 'Invalid datatype', e.message, e)
+  rescue Graphiti::Errors::RecordNotFound
+    content_type :json
+    halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
+  rescue StandardError => e
+    content_type :json
+    puts e.backtrace.join("\n")
+    halt 500, api_error('500', request.url, 'Unknown Error', e.cause || e.message, e)
+  ensure
+    headers 'X-TIMING' => (((Time.now - timing_start) * 1000).to_i).to_s
+  end
+
+
   delete '/:entity/:id' do
     timing_start = Time.now
     content_type :json
@@ -157,7 +197,7 @@ class MainController < GenericController
     halt 500, api_error('500', request.url, 'Invalid datatype', e.message, e)
   rescue Graphiti::Errors::RecordNotFound
     content_type :json
-    halt 404, api_error('404', request.url, 'Not found', "'#{id}' niet gevonden in  #{params[:entity]}")
+    halt 404, api_error('404', request.url, 'Not found', "'#{params['id']}' niet gevonden in  #{params[:entity]}")
   rescue StandardError => e
     content_type :json
     puts e.backtrace.join("\n")
